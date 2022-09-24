@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="card">
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <figure class="text-center">
+            <h1>Adatok módosítása</h1>
+        </figure>
+        <form #userPost="ngForm" (ngSubmit)="onSubmit(userPost.value)">
+            <div class="mb-3 row">
+                <label for="name" class="col-sm-3 col-form-label">Név</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="name" name = "name" ngModel value="{{user?.name}}">
+                </div>
+            </div>
+        
+            <div class="mb-3 row">
+                <label for="email" class="col-sm-3 col-form-label">Email cím</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="email" name = "email" ngModel value="{{user?.email}}">
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label for="neptun" class="col-sm-3 col-form-label">Neptun</label>
+                <div class="col-sm-9">
+                    <input type="neptun" class="form-control" id="neptun" name = "neptun" ngModel value="{{user?.neptun}}">
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label for="birthDate" class="col-sm-3 col-form.label">Születési dátum</label>
+                <div  class="col-sm-9">
+                    <input type="date" id="birthDate" name="birthDate" ngModel value="{{user?.birthDate}}">
+                </div>
+            </div>
+        
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <button type="submit" class="btn btn-dark">Módosítás</button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>

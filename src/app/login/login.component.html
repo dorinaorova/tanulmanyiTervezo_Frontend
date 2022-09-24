@@ -1,0 +1,25 @@
+<div class="d-grid gap-2 col-6 mx-auto">
+    <figure class="text-center">
+        <h1>Belépés</h1>
+    </figure>
+<form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
+    <div class="mb-3 row">
+        <label for="email" class="col-sm-2 col-form-label">Email:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="emial" name="email" value="example@example.com" ngModel required>
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label for="password" class="col-sm-2 col-form-label">Password:</label>
+        <div class="col-sm-10">
+            <input type="password" class="form-control" id="password" name = "password" ngModel required>
+        </div>
+    </div>
+
+    <div class="d-grid gap-2 col-6 mx-auto">
+
+    <button type= "submit" class="btn btn-dark" >Belépés</button>
+
+    </div>
+</form>
