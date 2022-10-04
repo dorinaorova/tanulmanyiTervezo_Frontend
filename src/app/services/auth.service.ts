@@ -14,11 +14,11 @@ import { User } from "../models/user";
     constructor(private http: HttpClient) { 
     }
   
-      logout() {
-        localStorage.removeItem('userId');
-        localStorage.removeItem('login');
-        localStorage.removeItem('userRole');
-      }
+    logout() {
+      localStorage.removeItem('userId');
+      localStorage.removeItem('login');
+      localStorage.removeItem('userRole');
+    }
       
     public auth(email: string, password: string): Observable<User>{
       return this.http.post<User>(`${this.apiServerUrl}/auth/login`, {email, password});

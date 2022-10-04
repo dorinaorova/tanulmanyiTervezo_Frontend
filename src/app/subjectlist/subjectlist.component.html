@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="d-grid gap-2 col-8 mx-auto">
+    <figure class="text-center">
+        <h1>Tantárgyak listája</h1>
+    </figure>
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">Cím</th>
+            <th scope="col">Kreditek</th>
+            <th scope="col">Részeltek</th>
+            
+        </tr>
+        </thead>
+        <tbody >
+            <tr *ngFor="let subject of subjects; index as i; first as isFirst">
+                <th scope="col">{{subject.name}}</th>
+                <th scope="col">{{subject.kredit}}</th>
+                <th scope="col" class="btn" (click)="details(subject.id)"><i class="fa fa-search"></i></th>
+            </tr>
+        </tbody>
+    </table>
+
+  
+

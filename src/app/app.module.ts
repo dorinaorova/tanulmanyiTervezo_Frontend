@@ -11,6 +11,9 @@ import { AppService } from './services/app.service';
 import { NewuserComponent } from './newuser/newuser.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserupdateComponent } from './userupdate/userupdate.component';
+import { SubjectlistComponent } from './subjectlist/subjectlist.component';
+import { SubjectUpdateComponent } from './subject-update/subject-update.component';
+import { SubjectDetailsComponent } from './subject-details/subject-details.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { UserupdateComponent } from './userupdate/userupdate.component';
     LoginComponent,
     NewuserComponent,
     UserProfileComponent,
-    UserupdateComponent
+    UserupdateComponent,
+    SubjectlistComponent,
+    SubjectUpdateComponent,
+    SubjectDetailsComponent
   ],
   imports: [
     BrowserModule,

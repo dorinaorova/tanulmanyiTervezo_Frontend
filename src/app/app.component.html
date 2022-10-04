@@ -2,20 +2,41 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
-  <div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
       <span class="navbar-brand mb-0 h1">Tervező</span>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
       </button>
+
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class = "navbar-nav">
-          <a class="nav-link" *ngIf="readLocalStorage()!=true" routerLink="/login">Belépés</a>
-          <a class="nav-link" *ngIf="readLocalStorage()!=true" routerLink="/newuser">Regisztráció</a>
-          <a class="nav-link" *ngIf="readLocalStorage()" routerLink="/profile">Fiók</a>
-          <a class="nav-link" (click)="logout()" *ngIf="readLocalStorage()" routerLink="/login">Kilépés</a> 
-        </div>
+        <ul class = "navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" *ngIf="readLocalStorage()!=true" routerLink="/login">Belépés</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" *ngIf="readLocalStorage()!=true" routerLink="/newuser">Regisztráció</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" *ngIf="readLocalStorage()" routerLink="/profile">Fiók</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" *ngIf="readLocalStorage()" routerLink="/subjects">Tantárgyak</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Admin
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/subjectupdate">Új tantárgy</a>
+            </div>
+          </li>
+          <li class = "nav-item">
+            <a class="nav-link" (click)="logout()" *ngIf="readLocalStorage()" routerLink="/login">Kilépés</a>
+          </li>
+        </ul>
       </div>
-   </div>
+    </div>
  </nav>
  <router-outlet></router-outlet>

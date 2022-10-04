@@ -26,12 +26,18 @@ export class LoginComponent implements OnInit {
         this.user=response;
         console.warn("response", response)
         localStorage.setItem('userId', response.id.toString());
-        localStorage.setItem('userRole', response.roles);
+        if(response.roles.includes("ADMIN")){
+          localStorage.setItem('userRole', "admin");
+        }
+        else{
+          localStorage.setItem('userRole', "user");
+        }
+        
         localStorage.setItem('login', "true");
         this.router.navigate(['/profile']);
       },
       (error: HttpErrorResponse) => {
-        alert("Hibás email cím vagy jelszó");
+        alert(error);
       }
     )
   }
