@@ -12,28 +12,20 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <ul class = "navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" *ngIf="readLocalStorage()!=true" routerLink="/login">Belépés</a>
+            <a class="nav-link" *ngIf="loggedIn()!=true" routerLink="/login">Belépés</a>
           </li>
           
           <li class="nav-item">
-            <a class="nav-link" *ngIf="readLocalStorage()!=true" routerLink="/newuser">Regisztráció</a>
+            <a class="nav-link" *ngIf="loggedIn()!=true" routerLink="/newuser">Regisztráció</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" *ngIf="readLocalStorage()" routerLink="/profile">Fiók</a>
+            <a class="nav-link" *ngIf="loggedIn()" routerLink="/profile">Fiók</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" *ngIf="readLocalStorage()" routerLink="/subjects">Tantárgyak</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Admin
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/subjectupdate">Új tantárgy</a>
-            </div>
-          </li>
+            <a class="nav-link" *ngIf="loggedIn()" routerLink="/subjects">Tantárgyak</a>
+          </li>          
           <li class = "nav-item">
-            <a class="nav-link" (click)="logout()" *ngIf="readLocalStorage()" routerLink="/login">Kilépés</a>
+            <a class="nav-link" (click)="logout()" *ngIf="loggedIn()" routerLink="/login">Kilépés</a>
           </li>
         </ul>
       </div>

@@ -14,7 +14,7 @@ export class AppComponent implements OnInit{
   public login: boolean;
 
   constructor(private app: AppService, private http: HttpClient, private router: Router, private authService: AuthenticationService ){
-    this.login=false;
+    this.login=this.loggedIn();
   }
 
   ngOnInit(){
@@ -26,8 +26,15 @@ export class AppComponent implements OnInit{
     this.authService.logout();
   }  
 
-  readLocalStorage(): boolean{
+  loggedIn(): boolean{
     if(localStorage.getItem("login")?.match("true")) return true;
     else return false;
   }
+
+  admin(): boolean{
+    if(localStorage.getItem("userRole")?.match("admin")) return true
+    else return false
+  }
+
+
 }

@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Period } from '../models/period';
 import { Subject } from '../models/subject';
 import { SubjectService } from '../services/subject.service';
 
@@ -13,6 +14,7 @@ export class SubjectDetailsComponent implements OnInit {
 
   subject: Subject | undefined;
   id: number;
+  periods: Period[] | undefined;
 
   constructor(private subjectService: SubjectService, private router: Router, private avRoute: ActivatedRoute) { 
     const idParam= 'id';
@@ -28,6 +30,7 @@ export class SubjectDetailsComponent implements OnInit {
   ngOnInit(): void {
     if(localStorage.getItem('login')=="true"){
       this.getSubject(this.id);
+      this.getPeriods(this.id)
     }
     else{
       this.router.navigate(['/login']);
@@ -38,6 +41,16 @@ export class SubjectDetailsComponent implements OnInit {
     this.subjectService.getSubject(id).subscribe(
       (response: Subject)=>{
         this.subject=response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+  }
+  getPeriods(id: number){
+    this.subjectService.getPeriodsForSubject(id).subscribe(
+      (response: Period[])=>{
+        this.periods=response;
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

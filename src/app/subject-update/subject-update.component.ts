@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Period } from '../models/period';
 import { Subject } from '../models/subject';
 import { SubjectService } from '../services/subject.service';
 
@@ -22,6 +23,7 @@ export class SubjectUpdateComponent implements OnInit {
     else{ 
       this.id=-1;
     }
+    console.warn(this.id)
    }
 
   ngOnInit(): void {
@@ -31,6 +33,7 @@ export class SubjectUpdateComponent implements OnInit {
     else{
       this.router.navigate(['/login']);
     }
+    
   }
 
   onSubmit(data: any){
@@ -50,7 +53,7 @@ export class SubjectUpdateComponent implements OnInit {
   }
 
   newSubject() : boolean{
-    if(this.subject == null) return true;
+    if(this.id == -1) return true;
     else return false;
   }
 
@@ -64,6 +67,8 @@ export class SubjectUpdateComponent implements OnInit {
       }
     )
   }
+
+  
 
   updateSubmit(data: any){
     var subjname: string;
@@ -95,6 +100,27 @@ export class SubjectUpdateComponent implements OnInit {
         alert(error.message);
       }
     )
+  }
+
+  onSubmitPeriod(data: any){
+
+    this.subjectService.addPeriod(data, this.id).subscribe(
+      (response: Period)=>{
+        alert("Tanóra sikeresen felvéve")
+      },
+      (error: HttpErrorResponse)=>{
+        alert(error.message);
+      }
+    )
+  }
+
+  back(){
+    if(this.newSubject()){
+    this.router.navigate(['/subjectdetails/', this.id])
+    }
+    else{
+      this.router.navigate(['/subjects'])
+    }
   }
 
 }

@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
+import { Period } from "../models/period";
 import { Subject } from "../models/subject";
 
 @Injectable({
@@ -29,6 +30,14 @@ export class SubjectService {
     
     public deleteSubject(id:number){
         return this.http.delete(`${this.apiServerUrl}/subject/delete/${id}`)
+    }
+
+    public getPeriodsForSubject(id: number){
+        return this.http.get<Period[]>(`${this.apiServerUrl}/subject/findallperiods/${id}`)
+    }
+
+    public addPeriod(data: Period, id: number){
+        return this.http.post<Period>(`${this.apiServerUrl}/subject/addperiod/${id}`, data)
     }
 
 }

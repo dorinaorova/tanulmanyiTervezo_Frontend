@@ -14,6 +14,7 @@ import { UserupdateComponent } from './userupdate/userupdate.component';
 import { SubjectlistComponent } from './subjectlist/subjectlist.component';
 import { SubjectUpdateComponent } from './subject-update/subject-update.component';
 import { SubjectDetailsComponent } from './subject-details/subject-details.component';
+import { TimetableComponent } from './timetable/timetable.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { SubjectDetailsComponent } from './subject-details/subject-details.compo
     UserupdateComponent,
     SubjectlistComponent,
     SubjectUpdateComponent,
-    SubjectDetailsComponent
+    SubjectDetailsComponent,
+    TimetableComponent
   ],
   imports: [
     BrowserModule,

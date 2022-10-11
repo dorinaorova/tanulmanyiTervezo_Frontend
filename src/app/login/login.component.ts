@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   user = {email: '', password: ''};
 
   constructor(private fb: FormBuilder, private router: Router, private authService: AuthenticationService) {
+    localStorage.clear()
    }
 
   ngOnInit(): void {
