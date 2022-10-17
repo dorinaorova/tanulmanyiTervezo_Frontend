@@ -1,8 +1,10 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
+import { Homework } from "../models/homework";
 import { Period } from "../models/period";
 import { Subject } from "../models/subject";
+import { ZH } from '../models/zh';
 
 @Injectable({
     providedIn: 'root'
@@ -39,5 +41,22 @@ export class SubjectService {
     public addPeriod(data: Period, id: number){
         return this.http.post<Period>(`${this.apiServerUrl}/subject/addperiod/${id}`, data)
     }
+
+    public getZhsForSubject(id:number){
+        return this.http.get<ZH[]>(`${this.apiServerUrl}/subject/findallzh/${id}`)
+    }
+
+    public addZh(data: ZH, id: number){
+        return this.http.post<ZH>(`${this.apiServerUrl}/subject/addzh/${id}`, data)
+    }
+
+    public getHomeworksForSubject(id:number){
+        return this.http.get<Homework[]>(`${this.apiServerUrl}/subject/findallhomework/${id}`)
+    }
+
+    public addHomework(data: Homework, id: number){
+        return this.http.post<Homework>(`${this.apiServerUrl}/subject/addhomework/${id}`, data)
+    }
+
 
 }

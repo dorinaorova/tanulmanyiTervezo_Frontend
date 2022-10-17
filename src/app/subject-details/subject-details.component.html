@@ -35,6 +35,7 @@
             </div>
       </div>
     </div>
+
     <div class="row">
       <div class="card d-grid gap-2 col-8 mx-auto">
         <figure class="text-center">
@@ -53,6 +54,54 @@
                   <th scope="col">{{period.day}}</th>
                   <th scope="col">{{period.start}}</th>
                   <th scope="col">{{period.length}}</th>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="card d-grid gap-2 col-8 mx-auto">
+        <figure class="text-center">
+          <h4 class="header">ZH-k</h4>
+        </figure>
+        <table class="table  text-center">
+          <thead class="thead-light">
+            <tr>
+                <th scope="col">Dátum</th>
+                <th scope="col">Max pontszám</th>
+                <th scope="col">Jegybe beleszámít</th>
+            </tr>
+            </thead>
+            <tbody >
+              <tr *ngFor="let zh of zhs; index as i; first as isFirst">
+                  <th scope="col"> {{createDateString(zh.date)}}</th>
+                  <th scope="col" >{{zh.maxPoints}}</th>
+                  <th scope="col" *ngIf="zh.countin"><i class="fa fa-check-square" aria-hidden="true"></i></th>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="card d-grid gap-2 col-8 mx-auto">
+        <figure class="text-center">
+          <h4 class="header">Házi feladatok</h4>
+        </figure>
+        <table class="table  text-center">
+          <thead class="thead-light">
+            <tr>
+                <th scope="col">Leadási dátum</th>
+                <th scope="col">Max pontszám</th>
+                <th scope="col">Leírás</th>
+            </tr>
+            </thead>
+            <tbody >
+              <tr *ngFor="let homework of homeworks; index as i; first as isFirst">
+                  <th scope="col"> {{createDateString(homework.date)}}</th>
+                  <th scope="col" >{{homework.maxPoints}}</th>
+                  <th scope="col" >{{homework.description}}</th>
               </tr>
           </tbody>
         </table>

@@ -41,8 +41,14 @@ export class UserProfileComponent implements OnInit {
     );
   }
 
-  public onSubmit(data: any){
-    
+
+  public createDateString(paramDate: any){
+    var date = String(paramDate).split('-') 
+    var dd = date[2].substring(0,2);
+    var mm = date[1]
+    var yyyy= date[0]
+    var dayStr = `${yyyy}. ${mm}. ${dd}.`
+    return dayStr
   }
 
 }

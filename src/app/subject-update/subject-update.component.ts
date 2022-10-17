@@ -1,8 +1,10 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Homework } from '../models/homework';
 import { Period } from '../models/period';
 import { Subject } from '../models/subject';
+import { ZH } from '../models/zh';
 import { SubjectService } from '../services/subject.service';
 
 @Component({
@@ -103,7 +105,6 @@ export class SubjectUpdateComponent implements OnInit {
   }
 
   onSubmitPeriod(data: any){
-
     this.subjectService.addPeriod(data, this.id).subscribe(
       (response: Period)=>{
         alert("Tanóra sikeresen felvéve")
@@ -114,12 +115,34 @@ export class SubjectUpdateComponent implements OnInit {
     )
   }
 
+  onSubmitZh(data: any){
+    this.subjectService.addZh(data, this.id).subscribe(
+      (response: ZH)=>{
+        alert("ZH sikeresen felvéve")
+      },
+      (error: HttpErrorResponse)=>{
+        alert(error.message);
+      }
+    )
+  }
+
+  onSubmitHomework(data: any){
+    this.subjectService.addHomework(data, this.id).subscribe(
+      (response: Homework)=>{
+        alert("Házi feladat sikeresen felvéve")
+      }, 
+      (error: HttpErrorResponse)=>{
+        alert(error.message);
+      }
+    )
+  }
+
   back(){
     if(this.newSubject()){
-    this.router.navigate(['/subjectdetails/', this.id])
+      this.router.navigate(['/subjects'])
     }
     else{
-      this.router.navigate(['/subjects'])
+      this.router.navigate(['/subjectdetails/', this.id])
     }
   }
 
