@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../models/user';
 import { AuthenticationService } from '../services/auth.service';
@@ -11,14 +12,24 @@ import { UserService } from '../services/user.service';
 })
 export class NewuserComponent implements OnInit {
   user: User | undefined;
+  newUserForm = new FormGroup({
+    name: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    birthDate: new FormControl(),
+    password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+    neptun: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(5)]),
+  });
 
-  constructor(private router: Router, private userService: UserService, private authService: AuthenticationService) {
+  constructor(private router: Router, private userService: UserService, private authService: AuthenticationService, private fb: FormBuilder) {
     this.userService=userService;
    }
 
   ngOnInit(): void {
   }
-  onSubmit(data: any){
+
+
+  onSubmit(){
+    var data = this.newUserForm.value
     this.userService.addUser(data).subscribe(
       (result) => {
         console.warn("result", result)
@@ -34,6 +45,21 @@ export class NewuserComponent implements OnInit {
         )
       }
     )
+  }
+
+  get name(){
+    return this.newUserForm.get('name')
+  }
+
+  get neptun(){
+    return this.newUserForm.get('neptun')
+  }
+
+  get email(){
+    return this.newUserForm.get('email')
+  }
+  get password(){
+    return this.newUserForm.get('password')
   }
 
 }

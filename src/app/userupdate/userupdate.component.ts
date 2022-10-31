@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../models/user';
 import { UserService } from '../services/user.service';
@@ -13,6 +14,12 @@ export class UserupdateComponent implements OnInit {
 
   id: number;
   user: User |undefined;
+  updateUserForm = new FormGroup({
+    name: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    birthDate: new FormControl(),
+    neptun: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(5)]),
+  });
 
   constructor(private userService: UserService, private avRoute: ActivatedRoute, private router: Router) 
   {
@@ -42,8 +49,16 @@ export class UserupdateComponent implements OnInit {
     );
   }
 
-  public onSubmit(data: any){
-    
+  public onSubmit(){
+    var data = this.updateUserForm.value
+    this.userService.updateUser(data).subscribe(
+      (result) => {
+        console.warn("result", result)
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
   }
 
 }
