@@ -28,6 +28,7 @@ import { HolidayupdateComponent } from './holidayupdate/holidayupdate.component'
     SubjectUpdateComponent,
     SubjectDetailsComponent,
     TimetableComponent
+    NewsemesterComponent,
     HolidayupdateComponent
   ],
   imports: [

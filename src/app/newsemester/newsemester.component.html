@@ -1,0 +1,52 @@
+
+<div class="container">
+    <div class="card mx-auto">
+        <figure class="text-center">
+            <h1>Új félév létrehozása</h1>
+        </figure>
+        <div class="row justify-content-md-center">
+            <div class="col-7">
+                <form [formGroup]="newSemesterForm" (ngSubmit)="onSubmit()">
+                    <div  class="row">
+                        <label for="name" class="col-2 form-label">Név</label>
+                        <div class="col">
+                            <input type="text" id="name" formControlName="name" ngModel>
+                            <div>
+                                <small *ngIf ="name  && name.invalid && name.touched" style="color: red;">A név megadása kötelező</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div  class="row">
+                        <label for="start" class="col-2 form-label">Kezdete</label>
+                        <div class="col">
+                            <input type="date" id="start" formControlName="start" ngModel>
+                            <div>
+                                <small *ngIf ="start  && start.invalid && start.touched" style="color: red;">A dátum megadása kötelező</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div  class="row">
+                        <label for="end" class="col-2 form-label">Vége</label>
+                        <div class="col">
+                            <input type="date" id="end" formControlName="end" ngModel>
+                            <div>
+                                <small *ngIf ="end  && end.invalid && end.touched" style="color: red;">A dátum megadása kötelező</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-check form-switch row">
+                        <input class="form-check-input" type="checkbox" id="current" formControlName="current" ngModel>
+                        <label class="form-check-label" for="current">Aktuális félév</label>
+                    </div>
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                        <button type="submit" class="btn btn-dark" [disabled]="newSemesterForm.invalid">Mentés</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="d-grid gap-2 col-1 backButton">
+            <button class="btn btn-dark" (click)="back()">Vissza</button>
+        </div>
+    </div>
+</div>
+

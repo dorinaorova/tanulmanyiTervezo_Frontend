@@ -21,6 +21,8 @@ const routes: Routes = [
   { path: 'subjectupdate/:id', component: SubjectUpdateComponent},
   { path: 'timetable', component: TimetableComponent}
   { path: 'holidayupdate', component: HolidayupdateComponent},
+  { path: 'semester', component: SemesterDetailsComponent},
+  { path: 'newsemester', component: NewsemesterComponent}
 ];
 
 @NgModule({
