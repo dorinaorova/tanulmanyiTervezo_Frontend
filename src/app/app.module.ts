@@ -15,6 +15,7 @@ import { SubjectlistComponent } from './subjectlist/subjectlist.component';
 import { SubjectUpdateComponent } from './subject-update/subject-update.component';
 import { SubjectDetailsComponent } from './subject-details/subject-details.component';
 import { TimetableComponent } from './timetable/timetable.component';
+import { HolidayupdateComponent } from './holidayupdate/holidayupdate.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { TimetableComponent } from './timetable/timetable.component';
     SubjectUpdateComponent,
     SubjectDetailsComponent,
     TimetableComponent
+    HolidayupdateComponent
   ],
   imports: [
     BrowserModule,

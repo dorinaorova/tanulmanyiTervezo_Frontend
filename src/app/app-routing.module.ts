@@ -20,6 +20,7 @@ const routes: Routes = [
   { path: 'subjectdetails/:id', component: SubjectDetailsComponent},
   { path: 'subjectupdate/:id', component: SubjectUpdateComponent},
   { path: 'timetable', component: TimetableComponent}
+  { path: 'holidayupdate', component: HolidayupdateComponent},
 ];
 
 @NgModule({
