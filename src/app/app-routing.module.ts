@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HolidayupdateComponent } from './holidayupdate/holidayupdate.component';
 import { LoginComponent } from './login/login.component';
+import { NewsemesterComponent } from './newsemester/newsemester.component';
 import { NewuserComponent } from './newuser/newuser.component';
+import { SemesterDetailsComponent } from './semester-details/semester-details.component';
 import { SubjectDetailsComponent } from './subject-details/subject-details.component';
 import { SubjectUpdateComponent } from './subject-update/subject-update.component';
 import { SubjectlistComponent } from './subjectlist/subjectlist.component';
@@ -19,7 +22,7 @@ const routes: Routes = [
   { path: 'newsubjec', component: SubjectUpdateComponent},
   { path: 'subjectdetails/:id', component: SubjectDetailsComponent},
   { path: 'subjectupdate/:id', component: SubjectUpdateComponent},
-  { path: 'timetable', component: TimetableComponent}
+  { path: 'timetable', component: TimetableComponent},
   { path: 'holidayupdate', component: HolidayupdateComponent},
   { path: 'semester', component: SemesterDetailsComponent},
   { path: 'newsemester', component: NewsemesterComponent}

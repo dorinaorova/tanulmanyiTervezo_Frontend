@@ -20,7 +20,7 @@
                     </tr>
                 </tbody>
             </table>
-            <div class="d-grid gap-2 col-2 newSubjectBtn">
+            <div class="d-grid gap-2 col-2 newSubjectBtn" *ngIf="admin()">
                 <button class="btn btn-dark " routerLink="/subjectupdate/-1" >Új tantárgy</button>
             </div>
         </div> 

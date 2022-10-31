@@ -18,12 +18,23 @@
           <li class="nav-item">
             <a class="nav-link" *ngIf="loggedIn()!=true" routerLink="/newuser">Regisztráció</a>
           </li>
+
           <li class="nav-item">
             <a class="nav-link" *ngIf="loggedIn()" routerLink="/profile">Fiók</a>
           </li>
+
           <li class="nav-item">
             <a class="nav-link" *ngIf="loggedIn()" routerLink="/subjects">Tantárgyak</a>
-          </li>          
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" *ngIf="loggedIn()" routerLink="/semester">Félévek</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" *ngIf="loggedIn()" routerLink="/timetable">Órarend</a>
+          </li>
+
           <li class = "nav-item">
             <a class="nav-link" (click)="logout()" *ngIf="loggedIn()" routerLink="/login">Kilépés</a>
           </li>

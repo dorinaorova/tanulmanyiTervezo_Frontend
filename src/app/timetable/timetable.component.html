@@ -32,14 +32,14 @@
   <nav>
     <ul class="pagination">
       <li class="page-item" >
-        <a class="page-link"  aria-label="Previous" disabled="true" >
-          <span aria-hidden="true" (click)="previousDay()" >&laquo;</span>
+        <a class="page-link"  aria-label="Previous" disabled="true" (click)="previousDay()">
+          <span aria-hidden="true"  >&laquo;</span>
           
         </a>
       </li>
       <li class="page-item">
-        <a class="page-link" aria-label="Next">
-          <span aria-hidden="true" (click)="nextDay()" aria-disabled="false">&raquo;</span>
+        <a class="page-link" aria-label="Next" (click)="nextDay()">
+          <span aria-hidden="true"  aria-disabled="false">&raquo;</span>
         </a>
       </li>
     </ul>

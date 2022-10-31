@@ -15,6 +15,8 @@ import { SubjectlistComponent } from './subjectlist/subjectlist.component';
 import { SubjectUpdateComponent } from './subject-update/subject-update.component';
 import { SubjectDetailsComponent } from './subject-details/subject-details.component';
 import { TimetableComponent } from './timetable/timetable.component';
+import { SemesterDetailsComponent } from './semester-details/semester-details.component';
+import { NewsemesterComponent } from './newsemester/newsemester.component';
 import { HolidayupdateComponent } from './holidayupdate/holidayupdate.component';
 
 @NgModule({
@@ -27,7 +29,8 @@ import { HolidayupdateComponent } from './holidayupdate/holidayupdate.component'
     SubjectlistComponent,
     SubjectUpdateComponent,
     SubjectDetailsComponent,
-    TimetableComponent
+    TimetableComponent,
+    SemesterDetailsComponent,
     NewsemesterComponent,
     HolidayupdateComponent
   ],

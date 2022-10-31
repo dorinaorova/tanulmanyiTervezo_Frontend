@@ -42,8 +42,6 @@ export class SubjectlistComponent implements OnInit {
     this.router.navigate(['/subjectdetails/', id])
   }
 
-  public update(id: number){
 
-  }
 
 }
