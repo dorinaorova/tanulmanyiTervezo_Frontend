@@ -8,6 +8,8 @@ import { SemesterDetailsComponent } from './semester-details/semester-details.co
 import { SubjectDetailsComponent } from './subject-details/subject-details.component';
 import { SubjectUpdateComponent } from './subject-update/subject-update.component';
 import { SubjectlistComponent } from './subjectlist/subjectlist.component';
+import { TaskUpdateComponent } from './task-update/task-update.component';
+import { TasklistComponent } from './tasklist/tasklist.component';
 import { TimetableComponent } from './timetable/timetable.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserupdateComponent } from './userupdate/userupdate.component';
@@ -25,7 +27,9 @@ const routes: Routes = [
   { path: 'timetable', component: TimetableComponent},
   { path: 'holidayupdate', component: HolidayupdateComponent},
   { path: 'semester', component: SemesterDetailsComponent},
-  { path: 'newsemester', component: NewsemesterComponent}
+  { path: 'newsemester', component: NewsemesterComponent},
+  { path: 'tasks', component:TasklistComponent},
+  { path: 'updatetask/:id', component: TaskUpdateComponent}
 ];
 
 @NgModule({

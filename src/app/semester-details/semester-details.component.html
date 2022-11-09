@@ -8,12 +8,12 @@
                 <small *ngIf="current()">(Aktuális)</small>
               </div>
               <div class="row">
-                {{createDateString(semester?.start)}} - {{createDateString(semester?.end)}}
+                {{createDateString(semester?.start)}} - {{createDateString(semester?.end)}} 
               </div>
             </div>
         </div>
-        <div class="row">
-          <div class="col">
+        <div class="row justify-content-center">
+          <div class="col-auto">
             <nav>
               <ul class="pagination">
                 <li class="page-item" >
@@ -29,15 +29,11 @@
               </ul>
             </nav>
           </div>
-          <div class="col">
-            <button class="btn btn-dark" *ngIf="admin()" (click)="newSemester()">Új félév</button>
-          </div>
       </div>
-
       </div>
       <div class="col-md-8">
           <div class="card">
-            <div class="row">
+            <div class="row" *ngIf="holidays != undefined">
               <figure class="text-center">
                 <h4 class="header">Ünnepnapok és szabadnapok</h4>
               </figure>
@@ -55,7 +51,7 @@
                   <tbody >
                       <tr *ngFor="let holiday of holidays; index as i; first as isFirst">
                           <th scope="col">{{holiday.name}}</th>
-                          <th scope="col">{{createDateString(holiday.date)}}</th>
+                          <th scope="col">{{createDateString(holiday?.date)}}</th>
                           <th scope="col">{{holiday.description}}</th>
                           <th scope="col" *ngIf="holiday.repeating"><i class="fa fa-check-square" aria-hidden="true"></i></th>
                           <th scope="col" *ngIf="holiday.repeating==false"></th>
@@ -64,13 +60,73 @@
                   </tbody>
               </table>
             </div>
-            <div class="row" >
-              <div class="col-sm-12">
-                <a class="btn btn-dark" *ngIf="admin()" href="/holidayupdate">Ünnepek kezelése</a>
+            <hr *ngIf="admin()">
+            <div class="row justify-content-end" *ngIf="admin()">
+              <div class="col-auto">
+                <a class="btn btn-dark btn-sm"  href="/holidayupdate">Ünnepek kezelése</a>
               </div>
             </div>
           </div>
         
       </div>
     </div>
+
+    <div class="row" *ngIf="!admin()">
+      <div class="card d-grid gap-2 col-8 mx-auto">
+        <figure class="text-center">
+          <h4 class="header">Felvett tantárgyak</h4>
+        </figure>
+        <table class="table  text-center">
+          <thead class="thead-light">
+            <tr>
+                <th scope="col">Tantárgy neve</th>
+                <th scope="col">Kreditek</th>
+                <th scope="col">Részletek</th>
+                <th scope="col">Jegy</th>
+            </tr>
+            </thead>
+            <tbody >
+              <tr *ngFor="let subject of subjects; index as i; first as isFirst">
+                  <th scope="col">{{subject.name}}</th>
+                  <th scope="col">{{subject.kredit}}</th>
+                  <th scope="col" class="btn" (click)="details(subject.id)"><i class="fa fa-search"></i></th>
+                  <th scope="col">1</th>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <div class="row" *ngIf="!admin()">
+      <div class="card d-grid gap-2 col-8 mx-auto">
+        <figure class="text-center">
+          <h4 class="header">Eredmények</h4>
+        </figure>
+        <table class="table  text-center">
+          <thead class="thead-light">
+            <tr>
+                <th scope="col">Tantárgy neve</th>
+                <th scope="col">Kreditek</th>
+                <th scope="col">Részletek</th>
+                <th scope="col">Jegy</th>
+            </tr>
+            </thead>
+            <tbody >
+              <tr *ngFor="let subject of subjects; index as i; first as isFirst">
+                  <th scope="col">{{subject.name}}</th>
+                  <th scope="col">{{subject.kredit}}</th>
+                  <th scope="col" class="btn" (click)="details(subject.id)"><i class="fa fa-search"></i></th>
+                  <th scope="col">1</th>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div>
+<div class="fixed-bottom">
+  <div class="row justify-content-center ">
+      <div class="col-auto">
+        <button class="btn btn-dark" *ngIf="admin()"  (click)="newSemester()">Új félév</button>
+      </div>
+  </div>
 </div>

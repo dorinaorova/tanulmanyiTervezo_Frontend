@@ -8,28 +8,28 @@
             <div class="mb-3 row">
                 <label for="name" class="col-sm-3 col-form-label">Név</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="name" name = "name" ngModel value="{{user?.name}}">
+                    <input type="text" class="form-control" id="name" formControlName = "name" value="{{user?.name}}">
                 </div>
             </div>
         
             <div class="mb-3 row">
                 <label for="email" class="col-sm-3 col-form-label">Email cím</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="email" name = "email" ngModel value="{{user?.email}}">
+                    <input type="text" class="form-control" id="email" formControlName = "email" value="{{user?.email}}">
                 </div>
             </div>
 
             <div class="mb-3 row">
                 <label for="neptun" class="col-sm-3 col-form-label">Neptun</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="neptun" name = "neptun" ngModel value="{{user?.neptun}}">
+                    <input type="text" class="form-control" id="neptun" formControlName = "neptun" value="{{user?.neptun}}">
                 </div>
             </div>
 
             <div class="mb-3 row">
                 <label for="birthDate" class="col-sm-3 col-form.label">Születési dátum</label>
                 <div  class="col-sm-9">
-                    <input type="date" id="birthDate" name="birthDate" ngModel value="{{user?.birthDate}}">
+                    <input type="date" id="birthDate" formControlName = "birthDate" value="{{user?.birthDate  | date: 'yyyy-MM-dd'}}">
                 </div>
             </div>
         

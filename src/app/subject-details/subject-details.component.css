@@ -12,13 +12,13 @@
     border-radius: .25rem;
     padding: 15px;
 }
-.mb-0{
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-.btn{
+.btn-back{
  margin-left: 5px;
- margin-top: 15px; 
+ margin: 15px; 
+}
+.btn-icon{
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
 .header{
     text-align: start;

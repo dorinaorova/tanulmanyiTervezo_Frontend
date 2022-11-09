@@ -31,9 +31,8 @@ export class AppComponent implements OnInit{
     else return false;
   }
 
-  admin(): boolean{
-    if(localStorage.getItem("userRole")?.match("admin")) return true
-    else return false
+  public admin(): boolean{
+    return localStorage.getItem('userRole')=="admin";
   }
 
 

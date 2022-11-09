@@ -12,7 +12,14 @@ import { SemesterService } from '../services/semester.service';
 })
 export class NewsemesterComponent implements OnInit {
 
-  constructor(private router: Router, private semesterService: SemesterService) { }
+  constructor(private router: Router, private semesterService: SemesterService) {
+    if(localStorage.getItem('userRole')!="admin"){
+      this.router.navigate(["/profile"])
+    }
+    else if(localStorage.getItem('login')=="false"){
+      this.router.navigate(["/login"])
+    }
+   }
 
   ngOnInit(): void {
   }

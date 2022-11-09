@@ -20,7 +20,7 @@ export class UserService {
         return this.http.get<User>(`${this.apiServerUrl}/user/find/${id}`);
     }
 
-    public updateUser(data: User){
-        return this.http.put<User>(`${this.apiServerUrl}/user/update`, data)
+    public updateUser(data: User, id: number){
+        return this.http.put<User>(`${this.apiServerUrl}/user/update/${id}`, data)
     }
 }

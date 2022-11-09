@@ -11,7 +11,15 @@
     border: 0 solid rgba(0,0,0,.125);
     border-radius: .25rem;
     padding: 15px;
+    margin-bottom: 15px;
 }
-.hr{
-    margin-bottom: 10px;
+.details{
+    margin-left: 20px;
+}
+.header{
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+.fixed-bottom{
+    margin: 30px;
 }

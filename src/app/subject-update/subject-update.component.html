@@ -39,6 +39,7 @@
         <button class="btn btn-dark " (click)="back()">Vissza</button>
     </div>
 </div>
+
 <div class="row" *ngIf="newSubject()!=true">
     <div class="card col">
         <figure class="text-center">
@@ -72,8 +73,18 @@
                         </div>
                     </div>
                 </div>
-                <div class="d-grid gap-2 col-6 mx-auto">
-                    <button type="submit" class="btn btn-dark">Óra felvétele</button>
+                <div class="form-group row">
+                    <label for="type" class="col-4 form-label">Óra típusa</label>
+                    <div class="col">
+                        <select class="form-control" id="type" name="type" ngModel>
+                            <option>Előadás</option>
+                            <option>Labor</option>
+                            <option>Gyakorlat</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="d-grid col-6 mx-auto">
+                    <button type="submit" class="btn btn-dark btn-sm">Óra felvétele</button>
                 </div>
             </form>
     </div>
@@ -100,12 +111,13 @@
                     <input type="checkbox" class="form-check-input" id="countin" name="countin" ngModel>
                 </div>
             </div>
-            <div class="d-grid gap-2 col-6 mx-auto">
-                <button type="submit" class="btn btn-dark">ZH felvétele</button>
+            <div class="d-grid col-6 mx-auto">
+                <button type="submit" class="btn btn-dark btn-sm">ZH felvétele</button>
             </div>
         </form>
     </div>
-    <div class="card col">
+
+    <div class="card col d-flex ">
         <figure class="text-center">
             <h4>Házi feladat felvétele</h4>
         </figure>
@@ -128,8 +140,8 @@
                     <textarea rows="1" class="form-control" id="description" name = "description" ngModel></textarea>
                 </div>
             </div>
-            <div class="d-grid gap-2 col-6 mx-auto">
-                <button type="submit" class="btn btn-dark">Házi felvétele</button>
+            <div class="d-grid align-self-end col-6 mx-auto ">
+                <button type="submit" class="btn btn-dark btn-sm">Házi felvétele</button>
             </div>
         </form>
     </div>

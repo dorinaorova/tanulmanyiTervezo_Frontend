@@ -8,41 +8,47 @@
               </div>
             </div>
         </div>
+        <div class="row justify-content-center">
+          <nav class="col-auto">
+            <ul class="pagination">
+              <li class="page-item" >
+                <a class="page-link"  aria-label="Previous" disabled="true" (click)="previousDay()">
+                  <span aria-hidden="true"  >&laquo;</span>
+                  
+                </a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" aria-label="Next" (click)="nextDay()">
+                  <span aria-hidden="true"  aria-disabled="false">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </div>
     <div class="col-md-8">
       <div class="card mb-3">
-        <table class="table  text-center">
+        <table class="table  text-center" *ngIf="this.periods != undefined && !isHolidayResult">
           <thead class="thead-light">
             <tr>
+                <th scope="col">Tantárgy</th>
                 <th scope="col">Mettől</th>
                 <th scope="col">Óra hossza (perc)</th>
             </tr>
             </thead>
             <tbody >
               <tr *ngFor="let period of periods; index as i; first as isFirst">
-                  <th scope="col">{{period.day}}</th>
-                  <th scope="col">{{period.start}}</th>
-                  <th scope="col">{{period.length}}</th>
+                  <th scope="col">{{period.subjectName}} - {{period.period.type}}</th>
+                  <th scope="col">{{period.period.start}}</th>
+                  <th scope="col">{{period.period.length}}</th>
               </tr>
           </tbody>
         </table>
+        <div class="text-center">
+          <h4 *ngIf="isHolidayResult" style="color: red;">Ma szünnap van!</h4>
+        </div>
       </div>
     </div>
 </div>
-  <nav>
-    <ul class="pagination">
-      <li class="page-item" >
-        <a class="page-link"  aria-label="Previous" disabled="true" (click)="previousDay()">
-          <span aria-hidden="true"  >&laquo;</span>
-          
-        </a>
-      </li>
-      <li class="page-item">
-        <a class="page-link" aria-label="Next" (click)="nextDay()">
-          <span aria-hidden="true"  aria-disabled="false">&raquo;</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
 </div>
 

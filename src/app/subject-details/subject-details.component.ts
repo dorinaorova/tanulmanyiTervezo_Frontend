@@ -114,4 +114,38 @@ export class SubjectDetailsComponent implements OnInit {
     )
   }
 
+  deleteZh(id: number){
+    this.subjectService.deleteZh(id).subscribe(
+      (result)=>{
+        this.ngOnInit()
+      },
+      (error: HttpErrorResponse)=>{
+        alert(error.message);
+        
+      }
+    )
+  }
+  deletePeriod(id: number){
+    this.subjectService.deletePeriod(id).subscribe(
+      (result)=>{
+        this.ngOnInit()
+      },
+      (error: HttpErrorResponse)=>{
+        alert(error.message);
+        
+      }
+    )
+  }
+  deleteHomework(id: number){
+    this.subjectService.deleteHomework(id).subscribe(
+      (result)=>{
+        this.ngOnInit()
+      },
+      (error: HttpErrorResponse)=>{
+        alert(error.message);
+        
+      }
+    )
+  }
+
 }

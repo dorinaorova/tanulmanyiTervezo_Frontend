@@ -9,19 +9,29 @@
                 <tr>
                     <th scope="col">Cím</th>
                     <th scope="col">Kreditek</th>
-                    <th scope="col">Részeltek</th>
+                    <th scope="col" *ngIf="!admin()">Felvesz</th>
+                    <th scope="col">Részletek</th>
                 </tr>
                 </thead>
                 <tbody >
                     <tr *ngFor="let subject of subjects; index as i; first as isFirst">
                         <th scope="col">{{subject.name}}</th>
                         <th scope="col">{{subject.kredit}}</th>
+                        <th scope="col" *ngIf="!admin()">
+                            <div class="btn" (click)="addSubject(subject)">
+                                <i class="fa fa-plus-square"></i>
+                            </div>
+                        </th> 
                         <th scope="col" class="btn" (click)="details(subject.id)"><i class="fa fa-search"></i></th>
+                        
                     </tr>
                 </tbody>
             </table>
-            <div class="d-grid gap-2 col-2 newSubjectBtn" *ngIf="admin()">
-                <button class="btn btn-dark " routerLink="/subjectupdate/-1" >Új tantárgy</button>
+            <hr *ngIf="admin()"class="hr">
+            <div class="row justify-content-center">
+                <div class="col-auto" *ngIf="admin()">
+                    <button class="btn btn-dark" routerLink="/subjectupdate/-1" >Új tantárgy</button>
+                </div>
             </div>
         </div> 
     </div>

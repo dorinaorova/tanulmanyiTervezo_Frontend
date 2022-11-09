@@ -1,0 +1,48 @@
+<div class = "container">
+    <div class="row justify-content-between ">
+        <div class="col-auto">
+            <h2 class="header" *ngIf="!this.done"> Elvégezendő feladatok:</h2>
+            <h2 class="header" *ngIf="this.done"> Elvégzett feladatok:</h2>
+        </div>
+        <div class="col-auto align-self-center">
+            <a class=" btn btn-dark" (click)="setDone()" *ngIf="!this.done">Elvégzett feladatok</a>
+            <a class=" btn btn-dark" (click)="setUndone()" *ngIf="this.done">Elvégezendő feladatok</a>
+        </div>
+    </div>
+
+    <div *ngIf="tasks!=undefined">
+        <div *ngFor="let task of tasks; index as i; first as isFirst">
+            <div class="card d-grid gap-2 col-8 mx-auto">
+                <div class="row justify-content-between">
+                    <div class="col-auto">
+                        <h5 *ngIf="expired(task.date)" style="color: red;">{{task.name}}</h5>
+                        <h5 *ngIf="!expired(task.date)">{{task.name}}</h5>
+                    </div>
+                    <div class=" col-auto">
+                        <th class="btn" (click)="updateTask(task.id)"><i class="fa fa-pencil-square-o"></i></th>
+                        <th class="btn" (click)="deleteTask(task.id)"><i class="fa fa-trash"></i></th>
+                    </div>
+                </div>
+                <small class="details">{{task.description}}</small>
+                <div class="row">
+                    <div class="col-auto details">Dátum:</div>
+                    <div class="col">{{createDateString(task.date)}}</div>
+                </div>
+                <hr *ngIf="!task.done">
+                <div class="row justify-content-end">
+                    <div class="col-auto" *ngIf="!task.done">
+                        <a class="btn btn-dark btn-sm" (click)="setTaskDone(task.id, task)">Megjelölés készként</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="fixed-bottom">
+    <div class="row justify-content-center ">
+        <div class="col-auto">
+            <a class="btn btn-dark" (click)="newTask()">Új feladat</a>
+        </div>
+    </div>
+</div>
+

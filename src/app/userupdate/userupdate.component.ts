@@ -23,7 +23,6 @@ export class UserupdateComponent implements OnInit {
 
   constructor(private userService: UserService, private avRoute: ActivatedRoute, private router: Router) 
   {
-    this.userService=userService;
     this.id=0;
     if(localStorage.getItem('userId')!=null){
       this.id = +localStorage.getItem('userId')!;
@@ -51,9 +50,10 @@ export class UserupdateComponent implements OnInit {
 
   public onSubmit(){
     var data = this.updateUserForm.value
-    this.userService.updateUser(data).subscribe(
+    this.userService.updateUser(data, this.id ).subscribe(
       (result) => {
-        console.warn("result", result)
+        alert("Adatok sikeresen módosítva!")
+        this.router.navigate(['/profile']);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

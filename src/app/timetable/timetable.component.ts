@@ -1,6 +1,15 @@
-import { getLocaleDateFormat } from '@angular/common';
+import { getLocaleDateFormat, getLocaleDayPeriods } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ResolveEnd, Router } from '@angular/router';
 import { Period } from '../models/period';
+import { Subject } from '../models/subject';
+import { StudentService } from '../services/student.service';
+import { SubjectService } from '../services/subject.service';
+import { Observable } from "rxjs";
+import { Timetable } from '../models/timetable';
+import { TimetableService } from '../services/timetable.service';
+import { HolidayService } from '../services/holiday.service';
 
 @Component({
   selector: 'app-timetable',
@@ -11,30 +20,51 @@ export class TimetableComponent implements OnInit {
 
   today : Date
   todayStr: string | undefined
-  periods: Period[] | undefined
+  periods: Timetable[];
+  subjects: Subject[] | undefined
+  isHolidayResult: boolean = false
 
-  constructor() {
-    this.today= new Date()
+  constructor(private studentService: StudentService, private router: Router, private subjectService: SubjectService, private timetableService: TimetableService, private holidayService: HolidayService) {
+    this.periods = [];
+    this.today= new Date();
+    if(localStorage.getItem('userRole')=="admin"){
+      this.router.navigate(["/profile"])
+    }
+    else if(localStorage.getItem('login')=="false"){
+      this.router.navigate(["/login"])
+    }
+    
    }
 
-  ngOnInit(): void {
+  ngOnInit() {
     var dd = String(this.today.getDate()).padStart(2, '0');
-    var mm = String(this.today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = this.today.getFullYear();
+    var mm = String(this.today.getMonth() + 1).padStart(2, '0');
     var day = this.parseDayOfWeek(this.today.getDay());
     this.todayStr=`${mm}. ${dd}. - ${day}`
-    console.warn(this.today)
+    this.getTimetable(day)   
+    this.isHoliday()
   }
+
+  isHoliday(){
+    this.holidayService.isHoliday(this.today.getTime()).subscribe(
+      (result: boolean) =>
+      {
+        this.isHolidayResult=result;
+      },
+        (error: HttpErrorResponse)=>{
+        alert(error.message);
+      }
+    )
+  }
+
 
   nextDay(){
     this.today.setDate(this.today.getDate() +1)
-    console.warn(this.today)
     this.ngOnInit()
   }
 
   previousDay(){
     this.today.setDate(this.today.getDate() -1)
-    console.warn(this.today)
     this.ngOnInit()
   }
 
@@ -64,6 +94,16 @@ export class TimetableComponent implements OnInit {
           return 'null'
 
     }
+  }
+  getTimetable(day: string){
+    this.timetableService.getDailyTimetable(Number(localStorage.getItem('userId')), day).subscribe(
+      (response: Timetable[])=>{
+        this.periods=response
+      },
+      (error: HttpErrorResponse)=>{
+        alert(error.message);
+      }
+    )
   }
 
 }

@@ -42,12 +42,20 @@ export class SubjectService {
         return this.http.post<Period>(`${this.apiServerUrl}/subject/addperiod/${id}`, data)
     }
 
+    public deletePeriod(id: number){
+        return this.http.delete(`${this.apiServerUrl}/subject/deleteperiod/${id}`)
+    }
+
     public getZhsForSubject(id:number){
         return this.http.get<ZH[]>(`${this.apiServerUrl}/subject/findallzh/${id}`)
     }
 
     public addZh(data: ZH, id: number){
         return this.http.post<ZH>(`${this.apiServerUrl}/subject/addzh/${id}`, data)
+    }
+
+    public deleteZh(id: number){
+        return this.http.delete(`${this.apiServerUrl}/subject/deletezh/${id}`)
     }
 
     public getHomeworksForSubject(id:number){
@@ -58,5 +66,7 @@ export class SubjectService {
         return this.http.post<Homework>(`${this.apiServerUrl}/subject/addhomework/${id}`, data)
     }
 
-
+    public deleteHomework(id: number){
+        return this.http.delete(`${this.apiServerUrl}/subject/deleteHomework/${id}`)
+    }
 }

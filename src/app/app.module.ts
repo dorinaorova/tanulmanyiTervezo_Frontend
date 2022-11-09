@@ -18,6 +18,9 @@ import { TimetableComponent } from './timetable/timetable.component';
 import { SemesterDetailsComponent } from './semester-details/semester-details.component';
 import { NewsemesterComponent } from './newsemester/newsemester.component';
 import { HolidayupdateComponent } from './holidayupdate/holidayupdate.component';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { TasklistComponent } from './tasklist/tasklist.component';
+import { TaskUpdateComponent } from './task-update/task-update.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,9 @@ import { HolidayupdateComponent } from './holidayupdate/holidayupdate.component'
     TimetableComponent,
     SemesterDetailsComponent,
     NewsemesterComponent,
-    HolidayupdateComponent
+    HolidayupdateComponent,
+    TasklistComponent,
+    TaskUpdateComponent
   ],
   imports: [
     BrowserModule,
@@ -46,3 +51,4 @@ import { HolidayupdateComponent } from './holidayupdate/holidayupdate.component'
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+platformBrowserDynamic().bootstrapModule(AppModule);

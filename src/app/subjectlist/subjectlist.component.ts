@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from '../models/subject';
+import { StudentService } from '../services/student.service';
 import { SubjectService } from '../services/subject.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class SubjectlistComponent implements OnInit {
 
   public subjects: Subject[] | undefined
 
-  constructor(private service: SubjectService, private router: Router) { }
+  constructor(private service: SubjectService, private router: Router, private studentService: StudentService) { }
 
   ngOnInit(): void {
     if(localStorage.getItem('login') == "true"){
@@ -40,6 +41,17 @@ export class SubjectlistComponent implements OnInit {
 
   public details(id: number){
     this.router.navigate(['/subjectdetails/', id])
+  }
+
+  addSubject(subject: Subject){
+    this.studentService.addSubject(subject).subscribe(
+      (response: any)=>{
+        alert("Tantárgy sikeresn felvéve!")
+      },
+      (error: HttpErrorResponse)=>{
+        alert(error.message)
+      }
+      )
   }
 
 

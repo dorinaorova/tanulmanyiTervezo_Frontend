@@ -32,7 +32,11 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" *ngIf="loggedIn()" routerLink="/timetable">Órarend</a>
+            <a class="nav-link" *ngIf="loggedIn() && !admin()"  routerLink="/timetable">Órarend</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" *ngIf="loggedIn() && !admin()"  routerLink="/tasks">Feladataim</a>
           </li>
 
           <li class = "nav-item">

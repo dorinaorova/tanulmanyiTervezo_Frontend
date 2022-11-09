@@ -18,6 +18,12 @@ export class SubjectUpdateComponent implements OnInit {
   id: number;
 
   constructor(private router: Router, private subjectService: SubjectService, private avRoute: ActivatedRoute) {
+    if(localStorage.getItem('userRole')!="admin"){
+      this.router.navigate(["/profile"])
+    }
+    else if(localStorage.getItem('login')=="false"){
+      this.router.navigate(["/login"])
+    }
     const idParam= 'id';
     if (this.avRoute.snapshot.params[idParam]) {
       this.id = this.avRoute.snapshot.params[idParam];
@@ -25,17 +31,10 @@ export class SubjectUpdateComponent implements OnInit {
     else{ 
       this.id=-1;
     }
-    console.warn(this.id)
    }
 
   ngOnInit(): void {
-    if(localStorage.getItem('login')=="true"){
-      this.getSubject(this.id);
-    }
-    else{
-      this.router.navigate(['/login']);
-    }
-    
+    this.getSubject(this.id);    
   }
 
   onSubmit(data: any){

@@ -21,7 +21,6 @@ export class NewuserComponent implements OnInit {
   });
 
   constructor(private router: Router, private userService: UserService, private authService: AuthenticationService, private fb: FormBuilder) {
-    this.userService=userService;
    }
 
   ngOnInit(): void {

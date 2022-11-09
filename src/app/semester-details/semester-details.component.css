@@ -7,7 +7,7 @@
     background-color: rgb(230, 230, 230);
     border: 0 solid rgba(0,0,0,.125);
     border-radius: .25rem;
-    margin-bottom: 30px;
+    padding: 15px;
 }
 .row{
     margin: 15px;

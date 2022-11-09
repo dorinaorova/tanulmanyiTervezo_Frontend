@@ -1,7 +1,7 @@
 export interface Holiday{
     id: number, 
     name: string,
-    date: Date,
+    date: number,
     description: String,
     repeating: boolean
 }

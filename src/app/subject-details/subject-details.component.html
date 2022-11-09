@@ -8,30 +8,41 @@
               </div>
             </div>
         </div>
-        <button class="btn btn-dark" *ngIf="admin()" (click)="update(subject!.id)">Módosítás</button>
-        <button class="btn btn-dark" *ngIf="admin()" (click)="delete(subject!.id)">Törlés</button>
-        <button class="btn btn-dark" routerLink="/subjects">Vissza</button>
+        <div class=" row justify-content-center">
+          <div class=" col-auto">
+            <button class="btn btn-dark btn-sm btn-back" routerLink="/subjects">Vissza a tantárgyakhoz</button>
+          </div>
+        </div>
       </div>
+      
       <div class="col-md-9">
         <div class="card mb-3">
-            <div class="row">
-              <div class="col-sm-2">
-                <h6 class="mb-0">Cím</h6>
+            <div class="row justify-content-between">
+              <div class="col-6">
+                <div class="row">
+                  <div class="col-4">
+                    <h6>Cím</h6>
+                  </div>
+                  <div class="col text-secondary">{{subject?.name}}</div>
+                </div>
               </div>
-              <div class="col-sm-9 text-secondary">{{subject?.name}}</div>
+              <div class="col-auto">
+                <th class="btn btn-icon" (click)="update(subject!.id)"><i class="fa fa-pencil-square-o"></i></th>
+                <th class="btn btn-icon" (click)="delete(subject!.id)"><i class="fa fa-trash"></i></th>
+              </div>
             </div>
             <div class="row">
-                <div class="col-sm-2">
-                    <h6 class="mb-0">Kreditek</h6>
+                <div class="col-2">
+                    <h6>Kreditek</h6>
                   </div>
-                  <div class="col-sm-9 text-secondary">{{subject?.kredit}}</div>
+                  <div class="col-9 text-secondary">{{subject?.kredit}}</div>
             </div>
 
             <div class="row">
-              <div class="col-sm-2">
-                <h6 class="mb-0">Leírás</h6>
+              <div class="col-2">
+                <h6 class=>Leírás</h6>
               </div>
-              <div class="col-sm-9 text-secondary">{{subject?.description}}</div>
+              <div class="col-9 text-secondary">{{subject?.description}}</div>
             </div>
       </div>
     </div>
@@ -47,6 +58,8 @@
                 <th scope="col">Nap</th>
                 <th scope="col">Mettől</th>
                 <th scope="col">Óra hossza (perc)</th>
+                <th scope="col">Óra típusa</th>
+                <th scope="col" *ngIf="admin()">Törlés</th>
             </tr>
             </thead>
             <tbody >
@@ -54,6 +67,8 @@
                   <th scope="col">{{period.day}}</th>
                   <th scope="col">{{period.start}}</th>
                   <th scope="col">{{period.length}}</th>
+                  <th scope="colt">{{period.type}}</th>
+                  <th scope="col" *ngIf="admin()" class="btn" (click)="deletePeriod(period.id)"><i class="fa fa-trash"></i></th>
               </tr>
           </tbody>
         </table>
@@ -71,6 +86,7 @@
                 <th scope="col">Dátum</th>
                 <th scope="col">Max pontszám</th>
                 <th scope="col">Jegybe beleszámít</th>
+                <th scope="col" *ngIf="admin()">Törlés</th>
             </tr>
             </thead>
             <tbody >
@@ -78,6 +94,8 @@
                   <th scope="col"> {{createDateString(zh.date)}}</th>
                   <th scope="col" >{{zh.maxPoints}}</th>
                   <th scope="col" *ngIf="zh.countin"><i class="fa fa-check-square" aria-hidden="true"></i></th>
+                  <th scope="col" *ngIf="zh.countin==false"></th>
+                  <th scope="col" *ngIf="admin()" class="btn" (click)="deleteZh(zh.id)"><i class="fa fa-trash"></i></th>
               </tr>
           </tbody>
         </table>
@@ -95,6 +113,7 @@
                 <th scope="col">Leadási dátum</th>
                 <th scope="col">Max pontszám</th>
                 <th scope="col">Leírás</th>
+                <th scope="col" *ngIf="admin()">Törlés</th>
             </tr>
             </thead>
             <tbody >
@@ -102,6 +121,7 @@
                   <th scope="col"> {{createDateString(homework.date)}}</th>
                   <th scope="col" >{{homework.maxPoints}}</th>
                   <th scope="col" >{{homework.description}}</th>
+                  <th scope="col" *ngIf="admin()" class="btn" (click)="deleteHomework(homework.id)"><i class="fa fa-trash"></i></th>
               </tr>
           </tbody>
         </table>
