@@ -1,6 +1,6 @@
 export interface ZH{
     id: number,
-    date: Date,
+    date: number,
     maxPoints: number,
     countin: boolean
 }

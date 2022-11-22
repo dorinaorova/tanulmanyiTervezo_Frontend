@@ -115,7 +115,13 @@ export class SubjectUpdateComponent implements OnInit {
   }
 
   onSubmitZh(data: any){
-    this.subjectService.addZh(data, this.id).subscribe(
+    var zh: ZH={
+      id: 0,
+      date: new Date(data.date).getTime(),
+      maxPoints: data.maxPoints,
+      countin: data.countin
+    }
+    this.subjectService.addZh(zh, this.id).subscribe(
       (response: ZH)=>{
         alert("ZH sikeresen felvéve")
       },
@@ -126,7 +132,13 @@ export class SubjectUpdateComponent implements OnInit {
   }
 
   onSubmitHomework(data: any){
-    this.subjectService.addHomework(data, this.id).subscribe(
+    var hw: Homework={
+      id:0,
+      date: new Date(data.date).getTime(),
+      maxPoints: data.maxPoints,
+      description: data.description
+    }
+    this.subjectService.addHomework(hw, this.id).subscribe(
       (response: Homework)=>{
         alert("Házi feladat sikeresen felvéve")
       }, 

@@ -47,7 +47,7 @@ export class SubjectService {
     }
 
     public getZhsForSubject(id:number){
-        return this.http.get<ZH[]>(`${this.apiServerUrl}/subject/findallzh/${id}`)
+        return this.http.get<ZH[]>(`${this.apiServerUrl}/subject/findallzhforsubject/${id}`)
     }
 
     public addZh(data: ZH, id: number){
@@ -56,6 +56,10 @@ export class SubjectService {
 
     public deleteZh(id: number){
         return this.http.delete(`${this.apiServerUrl}/subject/deletezh/${id}`)
+    }
+
+    public getZhForSemester(userId: number, semesterId: number){
+        return this.http.get<ZH[]>(`${this.apiServerUrl}/subject/findallzhforsemester/${semesterId}/${userId}`)
     }
 
     public getHomeworksForSubject(id:number){

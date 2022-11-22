@@ -1,7 +1,7 @@
 export interface Semester{
     id: number,
     name: String,
-    start: Date,
-    end: Date,
+    start: number,
+    end: number,
     current: boolean
 }

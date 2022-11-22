@@ -5,5 +5,5 @@ export interface User{
     password: string;
     roles: string;
     neptun: string;
-    birthDate: Date
+    birthDate: number
 }

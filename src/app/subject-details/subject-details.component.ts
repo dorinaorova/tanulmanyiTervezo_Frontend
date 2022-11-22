@@ -87,13 +87,13 @@ export class SubjectDetailsComponent implements OnInit {
   }
 
   public createDateString(paramDate: any){
-    var date = String(paramDate).split('-') 
+    var date = String(new Date(paramDate)).split(' ') 
     var dd = date[2].substring(0,2);
     var mm = date[1]
-    var dayStr = `${mm}. ${dd}.`
+    var yyyy= date[3]
+    var dayStr = `${yyyy}. ${mm}. ${dd}.`
     return dayStr
   }
-
   admin(){
     return localStorage.getItem('userRole')=="admin";
   }

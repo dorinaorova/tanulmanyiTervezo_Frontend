@@ -13,7 +13,7 @@
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="name" formControlName = "name" value="{{task?.name}}">
                                 <div>
-                                    <small *ngIf ="name  && name.invalid && name.touched" style="color: red;">A név megfadása kötelező!</small>
+                                    <small *ngIf ="name  && name.invalid && name.touched && newTask()" style="color: red;">A név megfadása kötelező!</small>
                                 </div>
                             </div>
                         </div>

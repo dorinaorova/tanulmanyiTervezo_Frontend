@@ -1,6 +1,6 @@
 export interface Homework{
     id: number,
-    date: Date,
+    date: number,
     maxPoints: number,
     description: String
 }

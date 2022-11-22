@@ -49,7 +49,16 @@ export class UserupdateComponent implements OnInit {
   }
 
   public onSubmit(){
-    var data = this.updateUserForm.value
+    var data: User={
+      id:0,
+      name: this.updateUserForm.value.name,
+      email: this.updateUserForm.value.email,
+      password: "",
+      neptun: this.updateUserForm.value.neptun,
+      birthDate: new Date(this.updateUserForm.value.birthDate).getTime(),
+      roles: ""
+    }
+    console.warn(data)
     this.userService.updateUser(data, this.id ).subscribe(
       (result) => {
         alert("Adatok sikeresen módosítva!")

@@ -2,7 +2,8 @@
 <div class="container">
     <div class="card mx-auto">
         <figure class="text-center">
-            <h1>Új félév létrehozása</h1>
+            <h1 *ngIf="newSemester()">Új félév létrehozása</h1>
+            <h1 *ngIf="!newSemester()">Félév módosítása</h1>
         </figure>
         <div class="row justify-content-md-center">
             <div class="col-7">
@@ -10,36 +11,37 @@
                     <div  class="row">
                         <label for="name" class="col-2 form-label">Név</label>
                         <div class="col">
-                            <input type="text" id="name" formControlName="name">
+                            <input type="text" id="name" formControlName="name" value="{{this.semester?.name}}">
                             <div>
-                                <small *ngIf ="name  && name.invalid && name.touched" style="color: red;">A név megadása kötelező</small>
+                                <small *ngIf ="name  && name.invalid && name.touched && newSemester()" style="color: red;">A név megadása kötelező</small>
                             </div>
                         </div>
                     </div>
                     <div  class="row">
                         <label for="start" class="col-2 form-label">Kezdete</label>
                         <div class="col">
-                            <input type="date" id="start" formControlName="start">
+                            <input type="date" id="start" formControlName="start" value="{{this.semester?.start  | date: 'yyyy-MM-dd'}}">
                             <div>
-                                <small *ngIf ="start  && start.invalid && start.touched" style="color: red;">A dátum megadása kötelező</small>
+                                <small *ngIf ="start  && start.invalid && start.touched && newSemester()" style="color: red;">A dátum megadása kötelező</small>
                             </div>
                         </div>
                     </div>
                     <div  class="row">
                         <label for="end" class="col-2 form-label">Vége</label>
                         <div class="col">
-                            <input type="date" id="end" formControlName="end">
+                            <input type="date" id="end" formControlName="end" value="{{this.semester?.end  | date: 'yyyy-MM-dd'}}">
                             <div>
-                                <small *ngIf ="end  && end.invalid && end.touched" style="color: red;">A dátum megadása kötelező</small>
+                                <small *ngIf ="end  && end.invalid && end.touched && newSemester()" style="color: red;">A dátum megadása kötelező</small>
                             </div>
                         </div>
                     </div>
-                    <div class="form-check form-switch row">
+                    <div class="form-check form-switch row" *ngIf="newSemester()">
                         <input class="form-check-input" type="checkbox" id="current" formControlName="current">
                         <label class="form-check-label" for="current">Aktuális félév</label>
                     </div>
                     <div class="d-grid gap-2 col-6 mx-auto">
-                        <button type="submit" class="btn btn-dark" [disabled]="newSemesterForm.invalid">Mentés</button>
+                        <button type="submit" class="btn btn-dark" [disabled]="newSemesterForm.invalid" *ngIf="newSemester()">Felvétel</button>
+                        <button type="submit" class="btn btn-dark" *ngIf="!newSemester()">Módosítás</button>
                     </div>
                 </form>
             </div>

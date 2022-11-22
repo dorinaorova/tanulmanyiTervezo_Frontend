@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'timetable', component: TimetableComponent},
   { path: 'holidayupdate', component: HolidayupdateComponent},
   { path: 'semester', component: SemesterDetailsComponent},
-  { path: 'newsemester', component: NewsemesterComponent},
+  { path: 'semesterupdate/:id', component: NewsemesterComponent},
   { path: 'tasks', component:TasklistComponent},
   { path: 'updatetask/:id', component: TaskUpdateComponent}
 ];

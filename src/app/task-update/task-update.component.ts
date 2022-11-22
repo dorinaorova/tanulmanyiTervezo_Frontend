@@ -46,7 +46,6 @@ export class TaskUpdateComponent implements OnInit {
       date: new Date(data.date).getTime(),
       done: false
     }
-    console.warn(task)
     if(this.newTask()){
       this.taskService.addTask(task, Number(localStorage.getItem('userId'))).subscribe(
         (response)=>{
@@ -59,8 +58,7 @@ export class TaskUpdateComponent implements OnInit {
       )
     }
     else{
-      console.warn("update")
-      //this.updateSubmit(data);
+      this.updateSubmit(task);
     }
   }
 
@@ -89,6 +87,18 @@ export class TaskUpdateComponent implements OnInit {
       },        
       (error: HttpErrorResponse) => {
         alert(error.message);
+      }
+    )
+  }
+
+  updateSubmit(task: Task){
+    this.taskService.updateTask(task, this.id).subscribe(
+      (response)=>{
+          alert("A feladat módosítása sikeres!")
+          this.router.navigate(["/tasks"])
+      },
+      (error: HttpErrorResponse)=>{
+        alert(error.message)
       }
     )
   }

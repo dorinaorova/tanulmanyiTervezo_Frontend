@@ -15,6 +15,10 @@ export class TaskService {
         return this.http.post<Task>(`${this.apiServerUrl}/task/add/${id}`, task);
     }
 
+    public updateTask(task: Task, id: number){
+        return this.http.put<Task>(`${this.apiServerUrl}/task/update/${id}`, task)
+    }
+
     public findTaskForUser(id: number){
         return this.http.get<Task[]>(`${this.apiServerUrl}/task/findallbyuser/${id}`);
     }
