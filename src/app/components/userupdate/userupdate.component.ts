@@ -30,11 +30,6 @@ export class UserupdateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(localStorage.getItem('login')=="true"){
-      this.getUser(this.id);
-    }else{
-      this.router.navigate(['/login']);
-    }
   }
 
   public getUser(id: number){

@@ -11,6 +11,7 @@ import { Homework } from 'src/app/models/homework';
 import { Semester } from 'src/app/models/semester';
 import { Subject } from 'src/app/models/subject';
 import { ZH } from 'src/app/models/zh';
+import { AuthenticationService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-semester-details',
@@ -30,11 +31,9 @@ export class SemesterDetailsComponent implements OnInit {
               private router: Router,
               private semesterService: SemesterService, 
               private studentService : StudentService,
-              private gradeService: GradeService)
+              private gradeService: GradeService,
+              private authService: AuthenticationService)
     {
-      if(localStorage.getItem('login')=="false"){
-          this.router.navigate(["/login"])
-      }
       this.edit=false;
       this.editline=[-1, -1];
    }
@@ -138,7 +137,7 @@ export class SemesterDetailsComponent implements OnInit {
   }
 
   admin(){
-    return localStorage.getItem('userRole')=="admin"
+    return this.authService.isAdmin();
   }
 
   getSubjects(){

@@ -9,6 +9,7 @@ import { StudentService } from '../../services/student.service';
 import { TaskService } from '../../services/task.service';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -28,6 +29,7 @@ export class UserProfileComponent implements OnInit {
     private studentService: StudentService,
     private taskService: TaskService,
     private semesterService: SemesterService,
+    private authService: AuthenticationService,
     private router: Router) 
   {
     this.userService=userService;
@@ -67,7 +69,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   admin(){
-    return localStorage.getItem('userRole')=="admin"
+    return this.authService.isAdmin();
   }
 
   public details(id: number){

@@ -14,12 +14,6 @@ export class HolidayupdateComponent implements OnInit {
   constructor(private router: Router, private holidayService: HolidayService) { }
 
   ngOnInit(): void {
-    if(localStorage.getItem('userRole')!="admin"){
-      this.router.navigate(["/profile"])
-    }
-    else if(localStorage.getItem('login')=="false"){
-      this.router.navigate(["/login"])
-    }
   }
 
   onSubmitHoliday(data: any){
@@ -33,6 +27,7 @@ export class HolidayupdateComponent implements OnInit {
     this.holidayService.addHoliday(holiday).subscribe(
       (response: Holiday)=>{
         alert("Az ünnepnap sikeresen felvéve")
+        this.router.navigate(['/semester']);
       }, 
       (error: HttpErrorResponse)=>{
         alert(error.message);

@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/auth.service';
 import { Subject } from '../../models/subject';
 import { StudentService } from '../../services/student.service';
 import { SubjectService } from '../../services/subject.service';
@@ -14,15 +15,10 @@ export class SubjectlistComponent implements OnInit {
 
   public subjects: Subject[] | undefined
 
-  constructor(private service: SubjectService, private router: Router, private studentService: StudentService) { }
+  constructor(private service: SubjectService, private router: Router, private studentService: StudentService, private authService: AuthenticationService) { }
 
   ngOnInit(): void {
-    if(localStorage.getItem('login') == "true"){
-        this.getSubjects();
-    }
-    else{
-      this.router.navigate(['/login']);
-    }
+    this.getSubjects();
   }
 
   public getSubjects(){
@@ -36,7 +32,7 @@ export class SubjectlistComponent implements OnInit {
     )
   }
   admin(){
-    return localStorage.getItem('userRole')=="admin";
+    return this.authService.isAdmin();
   }
 
   public details(id: number){

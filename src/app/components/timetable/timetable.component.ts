@@ -27,13 +27,6 @@ export class TimetableComponent implements OnInit {
   constructor(private studentService: StudentService, private router: Router, private subjectService: SubjectService, private timetableService: TimetableService, private holidayService: HolidayService) {
     this.periods = [];
     this.today= new Date();
-    if(localStorage.getItem('userRole')=="admin"){
-      this.router.navigate(["/profile"])
-    }
-    else if(localStorage.getItem('login')=="false"){
-      this.router.navigate(["/login"])
-    }
-    
    }
 
   ngOnInit() {

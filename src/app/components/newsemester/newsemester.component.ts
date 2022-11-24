@@ -16,12 +16,6 @@ export class NewsemesterComponent implements OnInit {
   semester: Semester | undefined
 
   constructor(private router: Router, private semesterService: SemesterService, private avRoute: ActivatedRoute) {
-    if(localStorage.getItem('userRole')!="admin"){
-      this.router.navigate(["/profile"])
-    }
-    else if(localStorage.getItem('login')=="false"){
-      this.router.navigate(["/login"])
-    }
     const idParam= 'id';
     if (this.avRoute.snapshot.params[idParam]) {
       this.id = this.avRoute.snapshot.params[idParam];

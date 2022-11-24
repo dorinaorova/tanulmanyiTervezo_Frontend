@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/auth.service';
 import { Homework } from '../../models/homework';
 import { Period } from '../../models/period';
 import { Subject } from '../../models/subject';
@@ -20,7 +21,7 @@ export class SubjectDetailsComponent implements OnInit {
   zhs: ZH[] |undefined;
   homeworks: Homework[] |undefined
 
-  constructor(private subjectService: SubjectService, private router: Router, private avRoute: ActivatedRoute) { 
+  constructor(private subjectService: SubjectService, private router: Router, private avRoute: ActivatedRoute, private authService: AuthenticationService) { 
     const idParam= 'id';
     if (this.avRoute.snapshot.params[idParam]) {
       this.id = this.avRoute.snapshot.params[idParam];
@@ -32,15 +33,10 @@ export class SubjectDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(localStorage.getItem('login')=="true"){
       this.getSubject(this.id);
       this.getPeriods(this.id)
       this.getZhs(this.id)
       this.getHomeworks(this.id)
-    }
-    else{
-      this.router.navigate(['/login']);
-    }
   }
 
   getSubject(id: number){
@@ -95,7 +91,7 @@ export class SubjectDetailsComponent implements OnInit {
     return dayStr
   }
   admin(){
-    return localStorage.getItem('userRole')=="admin";
+    return this.authService.isAdmin();
   }
 
   update(id: number){
