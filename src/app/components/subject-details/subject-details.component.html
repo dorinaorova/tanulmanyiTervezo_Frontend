@@ -64,7 +64,7 @@
             </thead>
             <tbody >
               <tr *ngFor="let period of periods; index as i; first as isFirst">
-                  <th scope="col">{{period.day}}</th>
+                  <th scope="col">{{convertDay(period.day)}}</th>
                   <th scope="col">{{period.start}}</th>
                   <th scope="col">{{period.length}}</th>
                   <th scope="colt">{{period.type}}</th>
@@ -113,7 +113,7 @@
               <h5>{{i+1}}. Házi feladat</h5>
             </div>
             <div class="col-auto">
-              <th class="btn" (click)="deleteHomework(homework.id)"><i class="fa fa-trash"></i></th>
+              <th class="btn" *ngIf="admin()" (click)="deleteHomework(homework.id)"><i class="fa fa-trash"></i></th>
             </div>
           </div>
           <div class="details">

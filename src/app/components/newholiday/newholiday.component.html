@@ -3,27 +3,34 @@
         <figure class="text-center">
             <h4>Ünnepnap felvétele</h4>
         </figure>
-        <form #holidayPost="ngForm" (ngSubmit)="onSubmitHoliday(holidayPost.value)">
+        <form (ngSubmit)="onSubmit()" [formGroup]="newHolidayForm">
             <div class="form-group row">
                 <label for="name" class="col-2 form-label">Név</label>
-                <div class="col">
-                    <input type="text" id="name" name="name" ngModel>
+                <div class="col-4">
+                    <input type="text" class="form-control" id="name" formControlName = "name">
+                    <div>
+                        <small *ngIf ="name  && name.invalid && name.touched" style="color: red;">A név megadása kötelező!</small>
+                    </div>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="date" class="col-2 form-label">Dátum</label>
-                <div class="col">
-                    <input type="date" id="date" name="date" ngModel>
+                <div class="col-2">
+                    <input type="date" class="form-control" id="date" formControlName = "date">
+                    <div>
+                        <small *ngIf ="date  && date.invalid && date.touched" style="color: red;">A dátum megadása kötelező!</small>
+                    </div>
+
                 </div>
             </div>
             <div class="form-group row" >
                 <label for="description" class="col-2 form-label">Leírás</label>
                 <div class="col">
-                    <textarea rows="1" class="form-control" id="description" name = "description" ngModel></textarea>
+                    <textarea rows="2" class="form-control" id="description" formControlName="description"></textarea>
                 </div>
             </div>
             <div class="form-check form-switch row">
-                <input class="form-check-input" type="checkbox" id="repeating" name="repeating" ngModel>
+                <input class="form-check-input" type="checkbox" id="repeating" formControlName="repeating">
                 <label class="form-check-label" for="repeating">Ismétlődik évente</label>
               </div>
             <div class="d-grid gap-2 col-6 mx-auto">

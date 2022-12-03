@@ -8,7 +8,7 @@
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="name" formControlName = "name">
                 <div>
-                    <small *ngIf ="name  && name.invalid && name.touched" style="color: red;">A név megfadása kötelező!</small>
+                    <small *ngIf ="name  && name.invalid && name.touched" style="color: red;">A név megadása kötelező!</small>
                 </div>
             </div>
         </div>
@@ -18,7 +18,7 @@
             <div class="col-sm-10">
                 <input type="neptun" class="form-control" id="neptun" formControlName = "neptun">
                 <div>
-                    <small *ngIf ="neptun  && neptun.invalid && neptun.touched" style="color: red;">A NEPTUN kód megadása kötelező! Hossza 5 karakter</small>
+                    <small *ngIf ="neptun  && neptun.invalid && neptun.touched" style="color: red;">A neptun kód megadása kötelező! Hossza 5 karakter</small>
                 </div>
             </div>
         </div>

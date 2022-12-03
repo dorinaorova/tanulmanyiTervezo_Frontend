@@ -1,6 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DateconverterService } from 'src/app/services/dateconverter.service';
 import { Homework } from '../../models/homework';
 import { Period } from '../../models/period';
 import { Subject } from '../../models/subject';
@@ -16,8 +19,16 @@ export class SubjectUpdateComponent implements OnInit {
 
   subject: Subject | undefined;
   id: number;
+  updateSubjectForm = new FormGroup({
+    name: new FormControl('', [Validators.required]),
+    description: new FormControl(''),
+    kredit: new FormControl('', [Validators.required, Validators.min(0)]),
+  });
 
-  constructor(private router: Router, private subjectService: SubjectService, private avRoute: ActivatedRoute) {
+  constructor(private router: Router,
+              private subjectService: SubjectService,
+              private avRoute: ActivatedRoute,
+              private dateConverter: DateconverterService) {
     const idParam= 'id';
     if (this.avRoute.snapshot.params[idParam]) {
       this.id = this.avRoute.snapshot.params[idParam];
@@ -31,14 +42,15 @@ export class SubjectUpdateComponent implements OnInit {
     this.getSubject(this.id);    
   }
 
-  onSubmit(data: any){
+  onSubmit(){
+    var data = this.updateSubjectForm.value
     if(this.newSubject()){
       this.subjectService.addSubject(data).subscribe(
         (response: Subject)=>{
           this.router.navigate(['/subjects']);
         },
         (error: HttpErrorResponse) => {
-          alert(error.message);
+          alert(error.error);
         }
       )
     }
@@ -52,58 +64,59 @@ export class SubjectUpdateComponent implements OnInit {
     else return false;
   }
 
-  getSubject(id: number){
+  getSubject(id: number){ 
     this.subjectService.getSubject(id).subscribe(
       (response: Subject)=>{
+        if(response==null){
+          this.id=-1;
+        }
+        else{
         this.subject=response;
+        this.updateSubjectForm.controls['name'].setValue(this.subject.name);
+        this.updateSubjectForm.controls['kredit'].setValue(this.subject.kredit);
+        this.updateSubjectForm.controls['description'].setValue(this.subject.description);
+        }
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        alert(error.error);
       }
     )
   }
+  get name(){
+    return this.updateSubjectForm.get('name')
+  }
 
+  get kredit(){
+    return this.updateSubjectForm.get('kredit');
+  }
   
 
   updateSubmit(data: any){
-    var subjname: string;
-    if(this.subject?.name==undefined) subjname="";
-    else{
-      if(data.name=='') subjname=this.subject.name
-      else subjname=data.name
-    }
-
-    var descr: string
-    if(this.subject?.description==undefined) descr="";
-    else{
-      if(data.description=='') descr=this.subject.description
-      else descr=data.description
-    }
-
-    const subj: Subject={
-      id: this.id,
-      name: subjname,
-      description: descr,
-      kredit: data.kredit
-    }
-
-    this.subjectService.updateSubject(subj, this.id).subscribe(
+    console.warn(data)
+    this.subjectService.updateSubject(data, this.id).subscribe(
       (response: Subject)=>{
-        this.router.navigate(['/subjects']);
+        this.router.navigate(['/subjectdetails/', this.id])
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        alert(error.error);
       }
     )
   }
 
   onSubmitPeriod(data: any){
-    this.subjectService.addPeriod(data, this.id).subscribe(
+    var period: Period={
+      id:0,
+      day: this.convertDay(data.day),
+      start: data.start,
+      length: data.length,
+      type: data.type
+    }
+    this.subjectService.addPeriod(period, this.id).subscribe(
       (response: Period)=>{
         alert("Tanóra sikeresen felvéve")
       },
       (error: HttpErrorResponse)=>{
-        alert(error.message);
+        alert(error.error);
       }
     )
   }
@@ -120,7 +133,7 @@ export class SubjectUpdateComponent implements OnInit {
         alert("ZH sikeresen felvéve")
       },
       (error: HttpErrorResponse)=>{
-        alert(error.message);
+        alert(error.error);
       }
     )
   }
@@ -137,7 +150,7 @@ export class SubjectUpdateComponent implements OnInit {
         alert("Házi feladat sikeresen felvéve")
       }, 
       (error: HttpErrorResponse)=>{
-        alert(error.message);
+        alert(error.error);
       }
     )
   }
@@ -149,6 +162,9 @@ export class SubjectUpdateComponent implements OnInit {
     else{
       this.router.navigate(['/subjectdetails/', this.id])
     }
+  }
+  convertDay(day: String){
+    return this.dateConverter.convertDayByName(day);
   }
 
 }

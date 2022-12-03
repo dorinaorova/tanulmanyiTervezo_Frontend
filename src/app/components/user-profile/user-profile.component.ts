@@ -10,6 +10,7 @@ import { TaskService } from '../../services/task.service';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/auth.service';
+import { DateconverterService } from 'src/app/services/dateconverter.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -30,7 +31,8 @@ export class UserProfileComponent implements OnInit {
     private taskService: TaskService,
     private semesterService: SemesterService,
     private authService: AuthenticationService,
-    private router: Router) 
+    private router: Router,
+    private dateConverter: DateconverterService) 
   {
     this.userService=userService;
     this.id=0;
@@ -53,19 +55,14 @@ export class UserProfileComponent implements OnInit {
         this.user = response;
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        alert(error.error);
       }
     );
   }
 
 
   public createDateString(paramDate: any){
-    var date = String(new Date(paramDate)).split(' ') 
-    var dd = date[2].substring(0,2);
-    var mm = date[1]
-    var yyyy= date[3]
-    var dayStr = `${yyyy}. ${mm}. ${dd}.`
-    return dayStr
+    return this.dateConverter.createDateStringWithYear(paramDate)
   }
 
   admin(){
@@ -82,7 +79,7 @@ export class UserProfileComponent implements OnInit {
         this.subjects=response;
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        alert(error.error);
       }
     )
   }
@@ -94,7 +91,7 @@ export class UserProfileComponent implements OnInit {
         this.getSubjects()
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        alert(error.error);
       }
     )
   }
@@ -104,7 +101,7 @@ export class UserProfileComponent implements OnInit {
       (response: Task[])=>{
         this.tasks=response;
       },(error: HttpErrorResponse)=>{
-        alert(error.message);
+        alert(error.error);
       }
     )
   }
@@ -118,7 +115,7 @@ export class UserProfileComponent implements OnInit {
         }
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        alert(error.error);
       }
     )
   }
@@ -131,7 +128,7 @@ export class UserProfileComponent implements OnInit {
         }
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        alert(error.error);
       }
     )
   }

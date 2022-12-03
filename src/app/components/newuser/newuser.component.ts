@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -20,7 +21,7 @@ export class NewuserComponent implements OnInit {
     neptun: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(5)]),
   });
 
-  constructor(private router: Router, private authService: AuthenticationService, private fb: FormBuilder) {
+  constructor(private router: Router, private authService: AuthenticationService) {
    }
 
   ngOnInit(): void {
@@ -37,20 +38,13 @@ export class NewuserComponent implements OnInit {
       roles: "",
       email: this.newUserForm.value.email
     }
-    console.warn(data)
     this.authService.signUp(data).subscribe(
       (result) => {
-        console.warn("result", result)
-        
-        this.authService.auth(data.email, data.password).subscribe(
-          (response: User) =>{
-            this.user = response;
-            localStorage.setItem('userId', response.id.toString());
-            localStorage.setItem('userRole', response.roles);
-            localStorage.setItem('login', "true");
-            this.router.navigate(['/profile']);
-          }
-        )
+        alert("Sikeres regisztráció!")
+        this.router.navigate(['/login'])
+      },
+      (error: HttpErrorResponse)=>{
+        alert(error.error)
       }
     )
   }

@@ -53,7 +53,7 @@ export class TaskUpdateComponent implements OnInit {
           this.router.navigate(['/tasks']);
         },
         (error: HttpErrorResponse) => {
-          alert(error.message);
+          alert(error.error);
         }
       )
     }
@@ -80,13 +80,21 @@ export class TaskUpdateComponent implements OnInit {
   }
 
   getTask(id: number){
-    this.taskService.findTask(id).subscribe(
+    this.taskService.findTask(id, Number(localStorage.getItem('userId'))).subscribe(
       (response: Task)=>{
+        if(response==null){
+          this.id=-1
+        }
         this.task=response
         this.taskDate= new Date(response.date)
       },        
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        if(error.status==404){
+          this.id=-1;
+        }
+        else{
+          alert(error.error);
+        }
       }
     )
   }
@@ -98,7 +106,7 @@ export class TaskUpdateComponent implements OnInit {
           this.router.navigate(["/tasks"])
       },
       (error: HttpErrorResponse)=>{
-        alert(error.message)
+        alert(error.error)
       }
     )
   }

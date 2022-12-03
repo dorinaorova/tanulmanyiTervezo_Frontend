@@ -8,21 +8,30 @@
             <div class="mb-3 row">
                 <label for="name" class="col-sm-3 col-form-label">Név</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="name" formControlName = "name" value="{{user?.name}}">
+                    <input type="text" class="form-control" id="name" formControlName = "name" >
+                    <div>
+                        <small *ngIf ="name  && name.invalid && name.touched" style="color: red;">A név megfadása kötelező!</small>
+                    </div>
                 </div>
             </div>
         
             <div class="mb-3 row">
                 <label for="email" class="col-sm-3 col-form-label">Email cím</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="email" formControlName = "email" value="{{user?.email}}">
+                    <input type="text" class="form-control" id="email" formControlName = "email" >
+                    <div>
+                        <small *ngIf ="email && email.invalid && email.touched" style="color: red;">Az email-cím kötelező</small>
+                    </div>
                 </div>
             </div>
 
             <div class="mb-3 row">
                 <label for="neptun" class="col-sm-3 col-form-label">Neptun</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="neptun" formControlName = "neptun" value="{{user?.neptun}}">
+                    <input type="text" class="form-control" id="neptun" formControlName = "neptun">
+                    <div>
+                        <small *ngIf ="neptun  && neptun.invalid && neptun.touched" style="color: red;">A NEPTUN kód megadása kötelező! Hossza 5 karakter</small>
+                    </div>
                 </div>
             </div>
 
@@ -34,9 +43,12 @@
             </div>
         
             <div class="d-grid gap-2 col-6 mx-auto">
-                <button type="submit" class="btn btn-dark">Módosítás</button>
+                <button type="submit" class="btn btn-dark" [disabled]="updateUserForm.invalid">Módosítás</button>
             </div>
         </form>
+        <div class="col-1 backButton">
+            <button class="btn btn-dark " (click)="back()">Vissza</button>
+        </div>
     </div>
 </div>
 </div>

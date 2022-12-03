@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HolidayupdateComponent } from './components/holidayupdate/holidayupdate.component';
+import { NewHolidayComponent } from './components/newholiday/newholiday.component';
 import { LoginComponent } from './components/login/login.component';
 import { NewsemesterComponent } from './components/newsemester/newsemester.component';
 import { NewuserComponent } from './components/newuser/newuser.component';
@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'subjectdetails/:id', component: SubjectDetailsComponent, canActivate: [AuthGuardService]},
   { path: 'subjectupdate/:id', component: SubjectUpdateComponent, canActivate: [AdminGuardService]},
   { path: 'timetable', component: TimetableComponent, canActivate: [AuthGuardService]},
-  { path: 'holidayupdate', component: HolidayupdateComponent, canActivate: [AdminGuardService]},
+  { path: 'holidayupdate', component: NewHolidayComponent, canActivate: [AdminGuardService]},
   { path: 'semester', component: SemesterDetailsComponent, canActivate: [AuthGuardService]},
   { path: 'semesterupdate/:id', component: NewsemesterComponent, canActivate: [AdminGuardService]},
   { path: 'tasks', component:TasklistComponent, canActivate: [AuthGuardService]},

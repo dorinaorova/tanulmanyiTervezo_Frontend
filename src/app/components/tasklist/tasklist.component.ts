@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DateconverterService } from 'src/app/services/dateconverter.service';
 import { Task } from '../../models/task';
 import { TaskService } from '../../services/task.service';
 
@@ -14,7 +15,7 @@ export class TasklistComponent implements OnInit {
   tasks: Task[] | undefined
   done: boolean
 
-  constructor(private router: Router, private service: TaskService) { 
+  constructor(private router: Router, private service: TaskService, private dateConverter: DateconverterService) { 
     this.done=false
   }
 
@@ -29,11 +30,7 @@ export class TasklistComponent implements OnInit {
   }
 
   public createDateString(paramDate: any){
-    var date = String(new Date(paramDate)).split(' ') 
-    var dd = date[2].substring(0,2);
-    var mm = date[1]
-    var dayStr = `${mm}. ${dd}.`
-    return dayStr
+    return this.dateConverter.createDateStringWithYear(paramDate);
   }
 
   newTask(){
@@ -46,7 +43,7 @@ export class TasklistComponent implements OnInit {
         this.tasks=result
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        alert(error.error);
       }
     )
   }
@@ -57,7 +54,7 @@ export class TasklistComponent implements OnInit {
         this.tasks=result
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        alert(error.error);
       }
     )
   }
@@ -67,7 +64,7 @@ export class TasklistComponent implements OnInit {
         this.ngOnInit()
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        alert(error.error);
       }
     )
   }
@@ -82,7 +79,7 @@ export class TasklistComponent implements OnInit {
         this.ngOnInit()
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        alert(error.error);
       }
     )
   }

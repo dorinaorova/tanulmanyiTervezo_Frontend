@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/profile']);
       },
       (error: HttpErrorResponse) => {
-        alert(error);
+        alert(error.error);
       }
     )
   }

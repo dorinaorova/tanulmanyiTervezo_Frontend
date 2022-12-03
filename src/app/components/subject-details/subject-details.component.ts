@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/auth.service';
+import { DateconverterService } from 'src/app/services/dateconverter.service';
 import { Homework } from '../../models/homework';
 import { Period } from '../../models/period';
 import { Subject } from '../../models/subject';
@@ -21,7 +22,11 @@ export class SubjectDetailsComponent implements OnInit {
   zhs: ZH[] |undefined;
   homeworks: Homework[] |undefined
 
-  constructor(private subjectService: SubjectService, private router: Router, private avRoute: ActivatedRoute, private authService: AuthenticationService) { 
+  constructor(private subjectService: SubjectService,
+              private router: Router,
+              private avRoute: ActivatedRoute,
+              private authService: AuthenticationService,
+              private dateConverter: DateconverterService) { 
     const idParam= 'id';
     if (this.avRoute.snapshot.params[idParam]) {
       this.id = this.avRoute.snapshot.params[idParam];
@@ -37,25 +42,32 @@ export class SubjectDetailsComponent implements OnInit {
       this.getPeriods(this.id)
       this.getZhs(this.id)
       this.getHomeworks(this.id)
+      
   }
 
   getSubject(id: number){
     this.subjectService.getSubject(id).subscribe(
       (response: Subject)=>{
+       if(response==null){
+        this.router.navigate(['/subjects'])
+       }
+       else{
         this.subject=response;
+       }
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        alert(error.error);
       }
     )
   }
+  
   getPeriods(id: number){
     this.subjectService.getPeriodsForSubject(id).subscribe(
       (response: Period[])=>{
         this.periods=response;
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        alert(error.error);
       }
     )
   }
@@ -66,9 +78,13 @@ export class SubjectDetailsComponent implements OnInit {
         this.zhs=response;
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        alert(error.error);
       }
     )
+  }
+
+  convertDay(day: number){
+    return this.dateConverter.convertDayByNumber(day);
   }
 
   getHomeworks(id:number){
@@ -77,19 +93,15 @@ export class SubjectDetailsComponent implements OnInit {
         this.homeworks=response;
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        alert(error.error);
       }
     )
   }
 
   public createDateString(paramDate: any){
-    var date = String(new Date(paramDate)).split(' ') 
-    var dd = date[2].substring(0,2);
-    var mm = date[1]
-    var yyyy= date[3]
-    var dayStr = `${yyyy}. ${mm}. ${dd}.`
-    return dayStr
+    return this.dateConverter.createDateStringWithYear(paramDate);
   }
+
   admin(){
     return this.authService.isAdmin();
   }
@@ -104,7 +116,7 @@ export class SubjectDetailsComponent implements OnInit {
         this.router.navigate(['/subjects'])
       },
       (error: HttpErrorResponse)=>{
-        alert(error.message);
+        alert(error.error);
         
       }
     )
@@ -116,29 +128,31 @@ export class SubjectDetailsComponent implements OnInit {
         this.ngOnInit()
       },
       (error: HttpErrorResponse)=>{
-        alert(error.message);
+        alert(error.error);
         
       }
     )
   }
+
   deletePeriod(id: number){
     this.subjectService.deletePeriod(id).subscribe(
       (result)=>{
         this.ngOnInit()
       },
       (error: HttpErrorResponse)=>{
-        alert(error.message);
+        alert(error.error);
         
       }
     )
   }
+
   deleteHomework(id: number){
     this.subjectService.deleteHomework(id).subscribe(
       (result)=>{
         this.ngOnInit()
       },
       (error: HttpErrorResponse)=>{
-        alert(error.message);
+        alert(error.error);
         
       }
     )

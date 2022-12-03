@@ -2,7 +2,7 @@ import { Time } from "@angular/common";
 
 export interface Period{
     id: number,
-    day: string,
+    day: number,
     start: Time,
     length: number,
     type: string

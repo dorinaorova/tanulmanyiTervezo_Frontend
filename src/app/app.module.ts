@@ -17,7 +17,7 @@ import { SubjectDetailsComponent } from './components/subject-details/subject-de
 import { TimetableComponent } from './components/timetable/timetable.component';
 import { SemesterDetailsComponent } from './components/semester-details/semester-details.component';
 import { NewsemesterComponent } from './components/newsemester/newsemester.component';
-import { HolidayupdateComponent } from './components/holidayupdate/holidayupdate.component';
+import { NewHolidayComponent } from './components/newholiday/newholiday.component';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { TaskUpdateComponent } from './components/task-update/task-update.component';
 import { TasklistComponent } from './components/tasklist/tasklist.component';
@@ -36,7 +36,7 @@ import { authInterceptorProviders } from './auth-helpers/auth.interceptor';
     TimetableComponent,
     SemesterDetailsComponent,
     NewsemesterComponent,
-    HolidayupdateComponent,
+    NewHolidayComponent,
     TasklistComponent,
     TaskUpdateComponent
   ],

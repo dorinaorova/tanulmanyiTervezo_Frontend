@@ -11,7 +11,7 @@ export class TimetableService {
 
     constructor(private http: HttpClient){ }
 
-    public getDailyTimetable(id: number, day: string){
+    public getDailyTimetable(id: number, day: number){
         return this.http.get<Timetable[]>(`${this.apiServerUrl}/timetable/finddaily/${id}/${day}`);
     }
 }

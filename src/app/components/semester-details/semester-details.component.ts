@@ -12,6 +12,7 @@ import { Semester } from 'src/app/models/semester';
 import { Subject } from 'src/app/models/subject';
 import { ZH } from 'src/app/models/zh';
 import { AuthenticationService } from 'src/app/services/auth.service';
+import { DateconverterService } from 'src/app/services/dateconverter.service';
 
 @Component({
   selector: 'app-semester-details',
@@ -32,7 +33,8 @@ export class SemesterDetailsComponent implements OnInit {
               private semesterService: SemesterService, 
               private studentService : StudentService,
               private gradeService: GradeService,
-              private authService: AuthenticationService)
+              private authService: AuthenticationService,
+              private dateConverter: DateconverterService)
     {
       this.edit=false;
       this.editline=[-1, -1];
@@ -51,7 +53,7 @@ export class SemesterDetailsComponent implements OnInit {
         }
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        alert(error.error);
       }
     )
   }
@@ -73,7 +75,7 @@ export class SemesterDetailsComponent implements OnInit {
         }
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        alert(error.error);
       }
     )
   }
@@ -86,7 +88,7 @@ export class SemesterDetailsComponent implements OnInit {
         }
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        alert(error.error);
       }
     )
   }
@@ -101,22 +103,17 @@ export class SemesterDetailsComponent implements OnInit {
         this.holidays=response;
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        alert(error.error);
       }
     )
   }
 
-  holidayslength(){
-    return this.holidays?.length
+  public createDateString(paramDate: any){
+    return this.dateConverter.createDateString(paramDate)
   }
 
-  public createDateString(paramDate: any){
-    var date = String(new Date(paramDate)).split(' ') 
-    var dd = date[2].substring(0,2);
-    var mm = date[1]
-    var yyyy = date[3]
-    var dayStr = `${yyyy}. ${mm}. ${dd}.`
-    return dayStr
+  public createDateStringWithYear(paramDate: any){
+    return this.dateConverter.createDateStringWithYear(paramDate)
   }
 
   public deleteHoliday(id: number){
@@ -125,7 +122,7 @@ export class SemesterDetailsComponent implements OnInit {
         this.ngOnInit()
       },
       (error: HttpErrorResponse)=>{
-        alert(error.message);
+        alert(error.error);
       }
     )
   }
@@ -146,7 +143,7 @@ export class SemesterDetailsComponent implements OnInit {
         this.subjects=response;
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        alert(error.error);
       }
     )
   }
@@ -157,7 +154,7 @@ export class SemesterDetailsComponent implements OnInit {
         this.grades=response;
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        alert(error.error);
       }
     )
   }
@@ -198,7 +195,7 @@ export class SemesterDetailsComponent implements OnInit {
           this.ngOnInit();
         },
         (error: HttpErrorResponse) => {
-          alert(error.message);
+          alert(error.error);
         }
       )
     }
@@ -208,7 +205,7 @@ export class SemesterDetailsComponent implements OnInit {
           this.ngOnInit();
         },
         (error: HttpErrorResponse) => {
-          alert(error.message);
+          alert(error.error);
         }
       )
     }
@@ -236,7 +233,7 @@ export class SemesterDetailsComponent implements OnInit {
           this.ngOnInit();
         },
         (error: HttpErrorResponse) => {
-          alert(error.message);
+          alert(error.error);
         }
       )
     }
@@ -246,7 +243,7 @@ export class SemesterDetailsComponent implements OnInit {
           this.ngOnInit();
         },
         (error: HttpErrorResponse) => {
-          alert(error.message);
+          alert(error.error);
         }
       )
     }
@@ -285,7 +282,7 @@ export class SemesterDetailsComponent implements OnInit {
         this.ngOnInit()
       },
       (error: HttpErrorResponse)=>{
-        alert(error.message)
+        alert(error.error)
       }
 
     )

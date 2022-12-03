@@ -27,7 +27,7 @@ export class SubjectlistComponent implements OnInit {
         this.subjects=response;
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        alert(error.error);
       }
     )
   }
@@ -45,7 +45,7 @@ export class SubjectlistComponent implements OnInit {
         alert("Tantárgy sikeresn felvéve!")
       },
       (error: HttpErrorResponse)=>{
-        alert(error.message)
+        alert(error.error)
       }
       )
   }

@@ -23,8 +23,8 @@ export class TaskService {
         return this.http.get<Task[]>(`${this.apiServerUrl}/task/findallbyuser/${id}`);
     }
 
-    public findTask(id: number){
-        return this.http.get<Task>(`${this.apiServerUrl}/task/findbyid/${id}`);
+    public findTask(id: number, user_id: number){
+        return this.http.get<Task>(`${this.apiServerUrl}/task/findbyid/${id}/${user_id}`);
     }
 
     public findDone(id: number){

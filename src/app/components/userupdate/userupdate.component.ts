@@ -27,6 +27,7 @@ export class UserupdateComponent implements OnInit {
     if(localStorage.getItem('userId')!=null){
       this.id = +localStorage.getItem('userId')!;
     }
+    this.getUser(this.id)
   }
 
   ngOnInit(): void {
@@ -36,14 +37,19 @@ export class UserupdateComponent implements OnInit {
     this.userService.getUser(id).subscribe(
       (response: User) => {
         this.user = response;
+        this.updateUserForm.controls['name'].setValue(this.user?.name);
+        this.updateUserForm.controls['email'].setValue(this.user?.email);
+        this.updateUserForm.controls['neptun'].setValue(this.user?.neptun);
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        alert(error.error);
       }
     );
+    
   }
 
   public onSubmit(){
+
     var data: User={
       id:0,
       name: this.updateUserForm.value.name,
@@ -60,9 +66,25 @@ export class UserupdateComponent implements OnInit {
         this.router.navigate(['/profile']);
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        alert(error.error);
       }
     )
+  }
+
+  get name(){
+    return this.updateUserForm.get('name')
+  }
+
+  get neptun(){
+    return this.updateUserForm.get('neptun')
+  }
+
+  get email(){
+    return this.updateUserForm.get('email')
+  }
+
+  back(){
+    this.router.navigate(['/profile']);
   }
 
 }

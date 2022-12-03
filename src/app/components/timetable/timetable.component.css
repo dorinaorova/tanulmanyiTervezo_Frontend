@@ -13,3 +13,11 @@
     padding: 15px;
     margin-bottom: 20px;
 }
+div .text-center{
+    margin-bottom: 20px;
+}
+.base{
+     background-color: rgb(186, 185, 185);
+     margin-left: 10px;
+     margin-right: 10px;
+}

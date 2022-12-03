@@ -8,7 +8,7 @@
                 <small *ngIf="current()">(Aktuális)</small>
               </div>
               <div>
-                {{createDateString(semester?.start)}} - {{createDateString(semester?.end)}} 
+                {{createDateStringWithYear(semester?.start)}} - {{createDateStringWithYear(semester?.end)}} 
               </div>
             </div>
         </div>
@@ -61,7 +61,7 @@
               <hr >
               <div class="row justify-content-center">
                 <div class="col-auto">
-                  <a class="btn btn-dark btn-sm"  href="/holidayupdate">Ünnepek kezelése</a>
+                  <a class="btn btn-dark btn-sm"  href="/holidayupdate">Új ünnepnap felvétele</a>
                 </div>
               </div>
             </div>
@@ -105,7 +105,7 @@
                       <div class="row justify-content-between" *ngIf="g.zh!=null">
                           <div class="col-auto row">
                             <div class="col-auto">ZH{{j+1}} - {{createDateString(g.zh.date)}}</div>
-                            <input class="col" type="number" id="points" name="points"min="0" max="{{g.zh.maxPoints}}" *ngIf="this.edit  && editLine(i, j)" ngModel>
+                            <input class="col" type="number" id="points" name="points" min="0" max="{{g.zh.maxPoints}}" *ngIf="this.edit  && editLine(i, j)" ngModel>
                             <div class="col-auto" *ngIf="!(this.edit  && editLine(i, j))">{{g.points}}</div>
                             <div class="col-auto"> / {{g.zh.maxPoints}}</div>
                             <div class="col-auto" *ngIf="g.zh.countin"><small>jegybe számít</small></div>

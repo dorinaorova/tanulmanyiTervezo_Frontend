@@ -52,7 +52,7 @@ export class NewsemesterComponent implements OnInit {
           this.router.navigate(['/semester'])
         }, 
         (error: HttpErrorResponse)=>{
-          alert(error.message);
+          alert(error.error);
         }
       )
     }
@@ -64,7 +64,7 @@ export class NewsemesterComponent implements OnInit {
           this.router.navigate(['/semester'])
         }, 
         (error: HttpErrorResponse)=>{
-          alert(error.message);
+          alert(error.error);
         }
       )
     }
@@ -97,7 +97,7 @@ export class NewsemesterComponent implements OnInit {
         this.semester= result
       },
       (error: HttpErrorResponse)=>{
-        alert(error.message);
+        alert(error.error);
       }
     )
   }

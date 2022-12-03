@@ -21,12 +21,8 @@ export class HolidayService {
         return this.http.get<boolean>(`${this.apiServerUrl}/holiday/isholiday/${date}`);
     }
 
-    public getHolidays(){
-        return this.http.get<Holiday[]>(`${this.apiServerUrl}/holiday/findall`);
-    }
-
     public getHolidaysForSemester(id: number){
-        return this.http.get<Holiday[]>(`${this.apiServerUrl}/holiday/findbydate/${id}`);
+        return this.http.get<Holiday[]>(`${this.apiServerUrl}/holiday/findbysemster/${id}`);
     }
 
     public delete(id: number){
