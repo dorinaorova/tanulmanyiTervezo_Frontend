@@ -18,8 +18,6 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit(){
-    if(localStorage.getItem("login")?.match("true")) {this.login =true;}
-    else this.login = false;
   }
 
   logout(){
@@ -27,12 +25,11 @@ export class AppComponent implements OnInit{
   }  
 
   loggedIn(): boolean{
-    if(localStorage.getItem("login")?.match("true")) return true;
-    else return false;
+    return this.authService.isAuthenticated();
   }
 
   public admin(): boolean{
-    return localStorage.getItem('userRole')=="admin";
+    return this.authService.isAdmin();
   }
 
 

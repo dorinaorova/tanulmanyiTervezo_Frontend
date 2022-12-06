@@ -12,11 +12,7 @@ export class AuthInterceptor implements HttpInterceptor {
     let authReq = req;
     const token = localStorage.getItem("token");
     if (token != null) {
-      authReq = req.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + token)
-                                                .set("Access-Control-Allow-Origin", "*")
-                                                .set("Access-Control-Allow-Headers", "Origin,X-Requested-With,Content-Type,Accept")
-                                                .set("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE,OPTIONS"), });
-        console.log(authReq);
+      authReq = req.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + token) });
     }
     return next.handle(authReq);
   }

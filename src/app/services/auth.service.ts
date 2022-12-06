@@ -16,7 +16,6 @@ import { User } from "../models/user";
   
     logout() {
       localStorage.removeItem('userId');
-      localStorage.removeItem('login');
       localStorage.removeItem('userRole');
       localStorage.removeItem('token');
     }

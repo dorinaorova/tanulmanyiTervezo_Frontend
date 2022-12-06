@@ -35,7 +35,6 @@ export class LoginComponent implements OnInit {
         }
         localStorage.setItem('token', response.accessToken.toString())
         
-        localStorage.setItem('login', "true");
         this.router.navigate(['/profile']);
       },
       (error: HttpErrorResponse) => {
