@@ -22,6 +22,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { TaskUpdateComponent } from './components/task-update/task-update.component';
 import { TasklistComponent } from './components/tasklist/tasklist.component';
 import { authInterceptorProviders } from './auth-helpers/auth.interceptor';
+import { unAathInterceptorProviders } from './auth-helpers/unauth.interceptor';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,7 @@ import { authInterceptorProviders } from './auth-helpers/auth.interceptor';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [authInterceptorProviders, AppService],
+  providers: [authInterceptorProviders,unAathInterceptorProviders, AppService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

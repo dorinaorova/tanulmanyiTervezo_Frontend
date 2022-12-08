@@ -39,7 +39,9 @@ export class SubjectUpdateComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.getSubject(this.id);    
+    if(this.newSubject!){
+      this.getSubject(this.id);
+    }    
   }
 
   onSubmit(){
@@ -47,10 +49,11 @@ export class SubjectUpdateComponent implements OnInit {
     if(this.newSubject()){
       this.subjectService.addSubject(data).subscribe(
         (response: Subject)=>{
+          console.warn(response)
           this.router.navigate(['/subjects']);
         },
         (error: HttpErrorResponse) => {
-          alert(error.error);
+          alert(error);
         }
       )
     }
@@ -78,7 +81,8 @@ export class SubjectUpdateComponent implements OnInit {
         }
       },
       (error: HttpErrorResponse) => {
-        alert(error.error);
+        alert(error);
+        console.warn(error)
       }
     )
   }
